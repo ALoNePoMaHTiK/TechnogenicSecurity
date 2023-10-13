@@ -82,6 +82,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -169,24 +177,24 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:ProgramSetup"
+        "ProductName" = "8:Расчет последствий пожара пролива"
         "ProductCode" = "8:{C4249482-3955-4E4F-9B8F-66F025809A50}"
         "PackageCode" = "8:{908A8ED5-4E12-4515-A2C7-0A6F7444CC0A}"
         "UpgradeCode" = "8:{E73AC23F-B4D7-4ADA-9EFA-F5C74C003C62}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:Lobanov Gleb"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:ProgramSetup"
+        "Title" = "8:Расчет последствий пожара пролива"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:Lobanov Gleb"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:Приложение для расчета последствий пожара пролива"
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
@@ -291,6 +299,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D9E098E730AA49B1B346E8D97E583C87"
+            {
+            "Name" = "8:Shortcut"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_91FF3BA922DD401DBB2E8A7692083D7D"
+            "Folder" = "8:_91FF3BA922DD401DBB2E8A7692083D7D"
+            "WorkingFolder" = "8:_91FF3BA922DD401DBB2E8A7692083D7D"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -692,7 +714,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_199E9CE4E9FB444EBCE1D2060AE97B5A"
             {
-            "SourcePath" = "8:..\\TechnogenicSecurity\\obj\\Debug\\net6.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\TechnogenicSecurity\\obj\\x86\\Debug\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F4DC60FDCD6D445F9CA9C11D28005851"
@@ -720,7 +742,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4E6411BFC07143EAB577C1B460B8C9CD"
             {
-            "SourcePath" = "8:..\\TechnogenicSecurity\\obj\\Debug\\net6.0-windows\\TechnogenicSecurity.dll"
+            "SourcePath" = "8:..\\TechnogenicSecurity\\obj\\x86\\Debug\\net6.0-windows\\TechnogenicSecurity.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F4DC60FDCD6D445F9CA9C11D28005851"

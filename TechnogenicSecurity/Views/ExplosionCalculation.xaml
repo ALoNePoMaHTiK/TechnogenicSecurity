@@ -1,0 +1,177 @@
+﻿<UserControl x:Class="TechnogenicSecurity.Views.ExplosionCalculation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm ="clr-namespace:TechnogenicSecurity.ViewModels" 
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <vm:ExplosionCalculationViewModel/>
+    </UserControl.DataContext>
+    <StackPanel HorizontalAlignment="Left">
+        <StackPanel Margin="5">
+            <StackPanel Orientation="Horizontal">
+                <GroupBox Header="Указываемые характеристики" BorderBrush="ForestGreen" Margin="5">
+                    <StackPanel VerticalAlignment="Center">
+                        <GroupBox Header="Характеристики вещества" BorderBrush="Chartreuse">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <GroupBox>
+                                        <StackPanel>
+                                            <Label>Объем вещества</Label>
+                                            <TextBox Text="{Binding SubstanceVolume}"></TextBox>
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox>
+                                        <StackPanel>
+                                            <Label>Площадь испарения</Label>
+                                            <TextBox Text="{Binding EvaporationArea}"></TextBox>
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox>
+                                        <StackPanel>
+                                            <Label>Расстояние до соседней постройки</Label>
+                                            <TextBox Text="{Binding NeighborBuildingDistance}"></TextBox>
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox>
+                                        <StackPanel>
+                                            <Label>Температура остывания</Label>
+                                            <TextBox Text="{Binding CoolingTemperature}"></TextBox>
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox>
+                                        <StackPanel>
+                                            <Label>Плотность вещества</Label>
+                                            <TextBox Text="{Binding LiquidDensity}"></TextBox>
+                                        </StackPanel>
+                                    </GroupBox>
+                                </StackPanel>
+                                <StackPanel>
+                                    <GroupBox>
+                                        <StackPanel>
+                                            <Label>Молярная масса</Label>
+                                            <TextBox Text="{Binding MolarMass}"></TextBox>
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox>
+                                        <StackPanel>
+                                            <Label>Удельная теплота испарения жидкости</Label>
+                                            <TextBox Text="{Binding SpecificEvaporationHeat}"></TextBox>
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox>
+                                        <StackPanel>
+                                            <Label>Температура кипения</Label>
+                                            <TextBox Text="{Binding BoilingTemperature}"></TextBox>
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox>
+                                        <StackPanel>
+                                            <Label>Степень заполнения</Label>
+                                            <TextBox Text="{Binding FillingLevel}"></TextBox>
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox>
+                                        <StackPanel>
+                                            <Label>C нкпр</Label>
+                                            <TextBox Text="{Binding LowerConcentrationLimit}" ToolTip="Нижний концентрационный предел распространения пламени"></TextBox>
+                                        </StackPanel>
+                                    </GroupBox>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Хакатеристики персонала" BorderBrush="ForestGreen">
+                            <StackPanel Orientation="Horizontal">
+                                <GroupBox>
+                                    <StackPanel>
+                                        <Label>Количество людей в соседнем здании</Label>
+                                        <TextBox Text="{Binding PeopleCount}"></TextBox>
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox>
+                                    <StackPanel>
+                                        <Label>Плотность распределения персонала</Label>
+                                        <TextBox Text="{Binding StaffDensity}"></TextBox>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Расчитываемые характеристики" BorderBrush="ForestGreen" Margin="5">
+                    <StackPanel>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Масса паров в-ва в первичном облаке</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding FirstCloudMass , StringFormat={}{0:#0.00000}}" ToolTip="Масса паров в-ва в первичном облаке"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Давление насышенного пара в-ва</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding SaturatedSteamPressure , StringFormat={}{0:#0.00000}}" ToolTip="Давление насышенного пара вещества при заданной температуре окружающей среды"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Интенсивность испарения разлившегося в-ва</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding EvaporationRate , StringFormat={}{0:#0.00000000}}" ToolTip="Интенсивность испарения разлившегося вещества"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Масса паров во вторичном облаке</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding SecondCloudMass , StringFormat={}{0:#0.00000}}" ToolTip="Масса паров во вторичном облаке"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Суммарная масса паров в-ва в облаке</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding TotalVaporMass , StringFormat={}{0:#0.00000}}" ToolTip="Суммарная масса паров вещества в облаке"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Радиус взрывного облака</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding BlastingCloudRadius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус взрывного облака"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Плотность газа</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding GasDensity , StringFormat={}{0:#0.00000}}" ToolTip="Плотность газа"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Радиус зоны детонационного взрыва</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding DetonationAreaRedius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус зоны детонационного взрыва"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Приведенная масса паров</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding ReducedVaporMass , StringFormat={}{0:#0.00000}}" ToolTip="Приведенная масса паров"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Избыточное давление на фронте ударной волны</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding WaveFrontExcessivePressure , StringFormat={}{0:#0.00000}}" ToolTip="Избыточное давление на фронте ударной волны"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Избыточное давление у соседней постройки</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding NeighborBuildingExcessivePressure , StringFormat={}{0:#0.00000}}" ToolTip="Избыточное давление у соседней постройки"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+            <Button FontSize="30" Margin="5" Command="{Binding CalculateValues}" Height="200">Рассчитать значения</Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

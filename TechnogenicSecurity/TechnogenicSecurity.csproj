@@ -4,7 +4,15 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
+    <UseWPF>True</UseWPF>
+    <Platforms>AnyCPU;x86;x64</Platforms>
+    <ApplicationIcon>fire_115156.ico</ApplicationIcon>
+    <FileVersion>1.0.1</FileVersion>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="fire_115156.ico" />
+  </ItemGroup>
 
 </Project>
