@@ -16,11 +16,13 @@ namespace TechnogenicSecurity.ViewModels
 
         public ExplosionCalculationViewModel explosionCalculationViewModel { get; set; }
         public StraitFireCalculationViewModel straitFireCalculationViewModel { get; set; }
+        public CatalogAdministrationViewModel catalogAdministrationViewModel { get; set; }
 
         public MainViewModel() 
         {
             explosionCalculationViewModel = new ExplosionCalculationViewModel();
             straitFireCalculationViewModel = new StraitFireCalculationViewModel();
+            catalogAdministrationViewModel = new CatalogAdministrationViewModel();
         }  
     }
 }

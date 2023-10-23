@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="TechnogenicSecurity.Views.CatalogsAdministration"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm ="clr-namespace:TechnogenicSecurity.ViewModels" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:CatalogAdministrationViewModel/>
+    </UserControl.DataContext>
+    <StackPanel>
+        <GroupBox>
+            <StackPanel>
+                <Label>Вещество</Label>
+                <ComboBox ItemsSource="{Binding Substances}" DisplayMemberPath="SubstanceName" SelectedItem="{Binding Substance}"></ComboBox>
+            </StackPanel>
+        </GroupBox>
+        <StackPanel>
+            <StackPanel>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Наименование</TextBlock>
+                        </Label>
+                        <TextBox IsEnabled="False" Text="{Binding Substance.SubstanceName}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Молярная масса, кг/кмоль</TextBlock>
+                        </Label>
+                        <TextBox IsEnabled="False" Text="{Binding Substance.MolarMass}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Плотность вещества, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                        </Label>
+                        <TextBox IsEnabled="False" Text="{Binding Substance.Density}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Температура кипения, К</TextBlock>
+                        </Label>
+                        <TextBox IsEnabled="False" Text="{Binding Substance.BoilingTemperature}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>НКПР, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                        </Label>
+                        <TextBox IsEnabled="False" Text="{Binding Substance.LCLS}" ToolTip="Нижний концентрационный предел распространения пламени"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>ВКПР, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                        </Label>
+                        <TextBox IsEnabled="False" Text="{Binding Substance.UCLS}" ToolTip="Верхний концентрационный предел распространения пламени"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

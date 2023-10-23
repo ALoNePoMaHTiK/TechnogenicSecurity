@@ -15,7 +15,7 @@ namespace TechnogenicSecurity.Models
         public int GasExplosionEnergy { get; set; }         //энергия взрыва газа смеси
         public int GasAirMixExplosionEnergy { get; set; }   //энергия взрыва газо-воздушной смеси
         public double Density { get; set; } //плотность стехиометрической смеси
-        public double LatentVaporizationHeat { get; set; }
+        public double HiddenVaporizationHeat { get; set; }
         public int BoilingTemperature { get; set; }
     }
 }

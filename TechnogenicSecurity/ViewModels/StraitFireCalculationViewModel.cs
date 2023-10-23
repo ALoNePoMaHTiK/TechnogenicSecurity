@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -18,9 +19,8 @@ namespace TechnogenicSecurity.ViewModels
         }
         public StraitFireCalculationViewModel()
         {
-            MolarMass = 300;
-            BoilingTemperature = 350;
-            Density = 920;
+            Substances = CatalogAdministrator.getSubstances();
+            Substance = Substances[3];
 
             TankRadius = 28;
             TankHeight = 30;
@@ -28,34 +28,27 @@ namespace TechnogenicSecurity.ViewModels
             ShellHeight = 9;
             FluxDensity = 60;
             WindSpeed = 5;
-            HeatOfLiquidVaporization = 240.3;
             LowerHeatingValue = 40000;
             TankFillLevel = 0.8;
         }
 
+
+        private ObservableCollection<Substance> _Substances;
+
+        public ObservableCollection<Substance> Substances
+        {
+            get { return _Substances; }
+            set { _Substances = value; }
+        }
+
         #region Хар-ки вещества
 
-        private int _MolarMass;
-        public int MolarMass
+        private Substance _Substance;
+        public Substance Substance 
         {
-            get { return _MolarMass; }
-            set { _MolarMass = value; OnPropertyChanged(); }
+            get { return _Substance; }
+            set { _Substance = value; OnPropertyChanged(); }
         }
-
-        private int _BoilingTemperature;
-        public int BoilingTemperature
-        {
-            get { return _BoilingTemperature; }
-            set { _BoilingTemperature = value; OnPropertyChanged(); }
-        }
-
-        private int _Density;
-        public int Density
-        {
-            get { return _Density; }
-            set { _Density = value; OnPropertyChanged(); }
-        }
-
         #endregion
 
         #region Хар-ки резервуара
@@ -292,8 +285,8 @@ namespace TechnogenicSecurity.ViewModels
             ShellArea = SubstanceVolume / ShellHeight;
             SpillMirrorDiameter = Math.Sqrt(ShellArea * 4 / Math.PI);
             SpillMirrorRadius = SpillMirrorDiameter / 2;
-            VaporDensity = MolarMass / (V0 * (1 + 0.00367 * TP));
-            LiquidBurnoutRate = (C * Density * LowerHeatingValue) / HeatOfLiquidVaporization;
+            VaporDensity = Substance.MolarMass / (V0 * (1.0 + 0.00367 * TP));
+            LiquidBurnoutRate = (C * Substance.Density * LowerHeatingValue) / Substance.HiddenVaporizationHeat;
             DimensionlessWindSpeed = WindSpeed * Math.Pow(VaporDensity / (LiquidBurnoutRate * g * SpillMirrorDiameter), 1.0 / 3.0);
             GeometricParameters = 55 * Math.Pow(LiquidBurnoutRate / (AIR_DENSITY * Math.Sqrt(g * SpillMirrorDiameter)), 0.67) * Math.Pow(DimensionlessWindSpeed, -0.21);
             FlameSpillHeight = GeometricParameters * SpillMirrorDiameter;

@@ -1,0 +1,46 @@
+[
+  {
+    "SubstanceName": "Бензин",
+    "MolarMass": 94,
+    "LCLS": 0.04,
+    "UCLS": 0.22,
+    "GasExplosionEnergy": 46200,
+    "GasAirMixExplosionEnergy": 2973,
+    "Density": 740,
+    "HiddenVaporizationHeat": 287.3,
+    "BoilingTemperature": 413
+  },
+  {
+    "SubstanceName": "Аммиак",
+    "MolarMass": 15,
+    "LCLS": 0.11,
+    "UCLS": 0.28,
+    "GasExplosionEnergy": 16600,
+    "GasAirMixExplosionEnergy": 2370,
+    "Density": 682.8,
+    "HiddenVaporizationHeat": 100,
+    "BoilingTemperature": -34
+  },
+  {
+    "SubstanceName": "Ацетон",
+    "MolarMass": 58,
+    "LCLS": 0.052,
+    "UCLS": 0.31,
+    "GasExplosionEnergy": 28600,
+    "GasAirMixExplosionEnergy": 3112,
+    "Density": 0.87,
+    "HiddenVaporizationHeat": 100,
+    "BoilingTemperature": 56
+  },
+  {
+    "SubstanceName": "Мазут",
+    "MolarMass": 300,
+    "LCLS": 0.1,
+    "UCLS": 0.1,
+    "GasExplosionEnergy": 28000,
+    "GasAirMixExplosionEnergy": 3000,
+    "Density": 920,
+    "HiddenVaporizationHeat": 240.3,
+    "BoilingTemperature": 350
+  }
+]

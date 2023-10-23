@@ -14,27 +14,38 @@
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
-    <TabControl>
-        <TabItem>
-            <TabItem.Header>
-                Расчет пожара пролива
-            </TabItem.Header>
-            <TabItem.Content>
-                <uc:StraitFireCalculation DataContext="{Binding straitFireCalculationViewModel}">
+    <StackPanel>
+        <TabControl>
+            <TabItem>
+                <TabItem.Header>
+                    Расчет пожара пролива
+                </TabItem.Header>
+                <TabItem.Content>
+                    <uc:StraitFireCalculation DataContext="{Binding straitFireCalculationViewModel}">
 
-                </uc:StraitFireCalculation>
-            </TabItem.Content>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                Расчет взрыва
-            </TabItem.Header>
-            <TabItem.Content>
-                <uc:ExplosionCalculation DataContext="{Binding explosionCalculationViewModel}">
+                    </uc:StraitFireCalculation>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    Расчет взрыва
+                </TabItem.Header>
+                <TabItem.Content>
+                    <uc:ExplosionCalculation DataContext="{Binding explosionCalculationViewModel}">
 
-                </uc:ExplosionCalculation>
-            </TabItem.Content>
-        </TabItem>
-    </TabControl>
-        
+                    </uc:ExplosionCalculation>
+                </TabItem.Content>
+            </TabItem>
+            <!--<TabItem>
+                <TabItem.Header>
+                    Справочники
+                </TabItem.Header>
+                <TabItem.Content>
+                    <uc:CatalogsAdministration DataContext="{Binding catalogAdministrationViewModel}">
+
+                    </uc:CatalogsAdministration>
+                </TabItem.Content>
+            </TabItem>-->
+        </TabControl>
+    </StackPanel>
 </Window>
