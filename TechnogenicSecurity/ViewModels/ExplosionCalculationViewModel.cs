@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Word;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using TechnogenicSecurity.Models;
@@ -32,6 +32,7 @@ namespace TechnogenicSecurity.ViewModels
 
             PeopleCount = 10;
             StaffDensity = 900;
+            Calculate();
         }
 
         #region Справочники
@@ -55,28 +56,28 @@ namespace TechnogenicSecurity.ViewModels
             set { _Substance = value; OnPropertyChanged(); }
         }
 
-        private int _SubstanceVolume;
-        public int SubstanceVolume
+        private double _SubstanceVolume;
+        public double SubstanceVolume
         {
             get { return _SubstanceVolume; }
             set { _SubstanceVolume = value; OnPropertyChanged(); }
         }
-        private int _EvaporationArea;
-        public int EvaporationArea
+        private double _EvaporationArea;
+        public double EvaporationArea
         {
             get { return _EvaporationArea; }
             set { _EvaporationArea = value; OnPropertyChanged(); }
         }
 
-        private int _NeighborBuildingDistance;
-        public int NeighborBuildingDistance
+        private double _NeighborBuildingDistance;
+        public double NeighborBuildingDistance
         {
             get { return _NeighborBuildingDistance; }
             set { _NeighborBuildingDistance = value; OnPropertyChanged(); }
         }
 
-        private int _CoolingTemperature;
-        public int CoolingTemperature
+        private double _CoolingTemperature;
+        public double CoolingTemperature
         {
             get { return _CoolingTemperature; }
             set { _CoolingTemperature = value; OnPropertyChanged(); }
@@ -161,8 +162,8 @@ namespace TechnogenicSecurity.ViewModels
             newResults.BlastingCloudRadius = 3.1501 * Math.Sqrt(EvaporationTime / 3600) * Math.Pow(newResults.SaturatedSteamPressure / Substance.LCLS, 0.813) * Math.Pow(newResults.TotalVaporMass / (newResults.GasDensity * newResults.SaturatedSteamPressure),1.0/3.0);
             newResults.DetonationAreaRedius = 10 * Math.Pow(newResults.TotalVaporMass * 0.06 / (Substance.MolarMass * 2.1),1.0/3.0);
             newResults.ReducedVaporMass = (46200.0 / 4520) * newResults.TotalVaporMass * Z;
-            newResults.WaveFrontExcessivePressure = 81 * Math.Pow(newResults.ReducedVaporMass, 1.0 / 3.0) / newResults.BlastingCloudRadius + 303 * Math.Pow(newResults.ReducedVaporMass, 2.0 / 3.0) / Math.Pow(newResults.BlastingCloudRadius,2) + 505 * newResults.ReducedVaporMass / Math.Pow(newResults.BlastingCloudRadius, 3);
-            newResults.NeighborBuildingExcessivePressure = 81 * (Math.Pow(newResults.ReducedVaporMass, 1.0 / 3.0) / NeighborBuildingDistance) + 303 * (Math.Pow(newResults.ReducedVaporMass, 2.0 / 3.0) / Math.Pow(NeighborBuildingDistance, 2)) + 505 * newResults.ReducedVaporMass / Math.Pow(NeighborBuildingDistance, 3);
+            newResults.WaveFrontExcessivePressure = 81 * Math.Pow(newResults.ReducedVaporMass, 1.0 / 3) / newResults.BlastingCloudRadius + 303 * Math.Pow(newResults.ReducedVaporMass, 2.0 / 3.0) / Math.Pow(newResults.BlastingCloudRadius,2) + 505 * newResults.ReducedVaporMass / Math.Pow(newResults.BlastingCloudRadius, 3);
+            newResults.NeighborBuildingExcessivePressure = 81 * (Math.Pow(newResults.ReducedVaporMass, 1.0 / 3) / NeighborBuildingDistance) + 303 * (Math.Pow(newResults.ReducedVaporMass, 2.0 / 3.0) / Math.Pow(NeighborBuildingDistance, 2)) + 505 * newResults.ReducedVaporMass / Math.Pow(NeighborBuildingDistance, 3);
             newResults.ShockWaveCompressionPhaseImpulse = 0.123 * Math.Pow(newResults.ReducedVaporMass, 2.0 / 3) / NeighborBuildingDistance;
             newResults.WeakDestructionProbability = 5 - 0.26 * Math.Log(Math.Pow(4.6 / newResults.NeighborBuildingExcessivePressure, 3.9) + Math.Pow(0.11 / newResults.ShockWaveCompressionPhaseImpulse, 5.0));
             newResults.MediumDestructionProbability = 5 - 0.26 * Math.Log(Math.Pow(17.5 / newResults.NeighborBuildingExcessivePressure, 8.4) + Math.Pow(0.29 / newResults.ShockWaveCompressionPhaseImpulse, 9.3));
@@ -175,13 +176,20 @@ namespace TechnogenicSecurity.ViewModels
 
         private void GenerateWordReport()
         {
-            Dictionary<string,string> properties = new Dictionary<string,string>();
-            properties.Add(nameof(GasolineVaporVolume),GasolineVaporVolume.ToString());
-            properties.Add(nameof(AtmosphericPressure), AtmosphericPressure.ToString());
-            properties.Add(nameof(Substance.MolarMass), Substance.MolarMass.ToString());
-            properties.Add(nameof(SubstanceVolume), SubstanceVolume.ToString());
-            properties.Add(nameof(CoolingTemperature), CoolingTemperature.ToString());
-            properties.Add(nameof(Results.FirstCloudMass), Results.FirstCloudMass.ToString());
+            IDictionary<string,string> properties = new Dictionary<string,string>();
+            properties.Add(getVariableData(GasolineVaporVolume));
+            properties.Add(getVariableData(AtmosphericPressure));
+            properties.Add(getVariableData(Substance.MolarMass));
+            properties.Add(getVariableData(SubstanceVolume));
+            properties.Add(getVariableData(CoolingTemperature));
+            properties.Add(getVariableData(Results.FirstCloudMass));
+            properties.Add(getVariableData(Substance.HiddenVaporizationHeat));
+            properties.Add(getVariableData(Substance.BoilingTemperature));
+            properties.Add(getVariableData(Results.SaturatedSteamPressure));
+            properties.Add(getVariableData(R));
+            properties.Add(getVariableData(Results.EvaporationRate));
+            properties.Add(getVariableData(Results.SecondCloudMass));
+            properties.Add(getVariableData(EvaporationArea));
             Word.Application app = new Word.Application();
             app.ShowAnimation = false;
             app.Visible = false;
@@ -210,9 +218,9 @@ namespace TechnogenicSecurity.ViewModels
             app = null;
         }
 
-        private KeyValuePair<string,string> getVariableData(int variable)
+        private KeyValuePair<string, string> getVariableData(object variable, [CallerArgumentExpression("variable")] string name = "value")
         {
-            return KeyValuePair.Create(nameof(variable),variable.ToString());
+            return KeyValuePair.Create(name, variable.ToString());
         }
     }
 }

@@ -8,13 +8,20 @@
         mc:Ignorable="d"
         xmlns:vm ="clr-namespace:TechnogenicSecurity.ViewModels" 
         SizeToContent="WidthAndHeight"
-        ResizeMode="NoResize"
+        Width="Auto"
+        Height="Auto"
         WindowStartupLocation="CenterScreen"
         Title="Расчет пожара пролива">
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
-    <StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <TabControl>
             <TabItem>
                 <TabItem.Header>
@@ -47,5 +54,5 @@
                 </TabItem.Content>
             </TabItem>-->
         </TabControl>
-    </StackPanel>
+    </Grid>
 </Window>

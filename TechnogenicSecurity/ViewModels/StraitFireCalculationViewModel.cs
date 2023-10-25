@@ -30,8 +30,8 @@ namespace TechnogenicSecurity.ViewModels
             WindSpeed = 5;
             LowerHeatingValue = 40000;
             TankFillLevel = 0.8;
+            Calculate();
         }
-
 
         private ObservableCollection<Substance> _Substances;
 
@@ -53,15 +53,15 @@ namespace TechnogenicSecurity.ViewModels
 
         #region Хар-ки резервуара
 
-        private int _TankRadius;
-        public int TankRadius
+        private double _TankRadius;
+        public double TankRadius
         {
             get { return _TankRadius; }
             set { _TankRadius = value; OnPropertyChanged(); }
         }
 
-        private int _TankHeight;
-        public int TankHeight
+        private double _TankHeight;
+        public double TankHeight
         {
             get { return _TankHeight; }
             set { _TankHeight = value; OnPropertyChanged(); }
@@ -71,21 +71,21 @@ namespace TechnogenicSecurity.ViewModels
 
         #region Общие характеристики
 
-        private int _ShellHeight;
-        public int ShellHeight
+        private double _ShellHeight;
+        public double ShellHeight
         {
             get { return _ShellHeight; }
             set { _ShellHeight = value; OnPropertyChanged(); }
         }
 
-        private int _FluxDensity;
-        public int FluxDensity
+        private double _FluxDensity;
+        public double FluxDensity
         {
             get { return _FluxDensity; }
             set { _FluxDensity = value; OnPropertyChanged(); }
         }
-        private int _WindSpeed;
-        public int WindSpeed
+        private double _WindSpeed;
+        public double WindSpeed
         {
             get { return _WindSpeed; }
             set { _WindSpeed = value; OnPropertyChanged(); }

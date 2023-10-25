@@ -3,297 +3,282 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1200">
-    <StackPanel HorizontalAlignment="Left">
-        <StackPanel Margin="5">
-            <StackPanel Orientation="Horizontal">
-                <GroupBox Header="Указываемые характеристики" BorderBrush="ForestGreen" Margin="5">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel VerticalAlignment="Center">
-                            <GroupBox Header="Характеристики вещества" MaxWidth="300" BorderBrush="Chartreuse">
-                                <StackPanel>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>Вещество</Label>
-                                            <ComboBox ItemsSource="{Binding Substances}" DisplayMemberPath="SubstanceName" SelectedItem="{Binding Substance}"></ComboBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Молярная масса вещества, кг/кмоль</TextBlock>
-                                            </Label>
-                                            <TextBox IsEnabled="True" Text="{Binding Substance.MolarMass}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Температура кипения вещества, C<TextBlock BaselineOffset="15" Text="o"/></TextBlock>
-                                            </Label>
-                                            <TextBox IsEnabled="True" Text="{Binding Substance.BoilingTemperature}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Плотность вещества, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
-                                            </Label>
-                                            <TextBox IsEnabled="True" Text="{Binding Substance.Density}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                </StackPanel>
-                            </GroupBox>
-
-                            <GroupBox Header="Характеристики резервуара" MaxWidth="300" BorderBrush="ForestGreen">
-                                <StackPanel>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Радиус основания резервуара, м</TextBlock>
-                                            </Label>
-                                            <TextBox Text="{Binding TankRadius}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Высота резервуара, м</TextBlock>
-                                            </Label>
-                                            <TextBox Text="{Binding TankHeight}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
-                        <StackPanel VerticalAlignment="Center">
-                            <GroupBox Header="Общие характеристики">
-                                <StackPanel>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Высота обваловки, м</TextBlock>
-                                            </Label>
-                                            <TextBox Text="{Binding ShellHeight}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Плотность потока собственного излучения, кВт/м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
-                                            </Label>
-                                            <TextBox Text="{Binding FluxDensity}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Скорость ветра, м/с</TextBlock>
-                                            </Label>
-                                            <TextBox Text="{Binding WindSpeed}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Скрытая теплота испарения жидкости, кДж/кг</TextBlock>
-                                            </Label>
-                                            <TextBox IsEnabled="False" Text="{Binding Substance.HiddenVaporizationHeat}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Низшая теплота сгорания топлива, кДж/кг</TextBlock>
-                                            </Label>
-                                            <TextBox Text="{Binding LowerHeatingValue}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>Уровень заполнения резервуара</Label>
-                                            <TextBox Text="{Binding TankFillLevel}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
+             mc:Ignorable="d">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Указываемые характеристики" BorderBrush="ForestGreen" Margin="5">
+            <WrapPanel Orientation="Vertical" VerticalAlignment="Center">
+                <GroupBox Header="Характеристики вещества" BorderBrush="Chartreuse">
+                    <StackPanel>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Вещество</Label>
+                                <ComboBox ItemsSource="{Binding Substances}" DisplayMemberPath="SubstanceName" SelectedItem="{Binding Substance}"></ComboBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Молярная масса вещества, кг/кмоль</TextBlock>
+                                </Label>
+                                <TextBox IsEnabled="True" Text="{Binding Substance.MolarMass}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Температура кипения вещества, C<TextBlock BaselineOffset="15" Text="o"/></TextBlock>
+                                </Label>
+                                <TextBox IsEnabled="True" Text="{Binding Substance.BoilingTemperature}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Плотность вещества, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                                </Label>
+                                <TextBox IsEnabled="True" Text="{Binding Substance.Density}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
                     </StackPanel>
                 </GroupBox>
-
-                <GroupBox Header="Расчитываемые значения" BorderBrush="Blue" Margin="5">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel VerticalAlignment="Center">
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Объем резервуара, м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding TankVolume, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Объем вещества в резервуаре, м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding SubstanceVolume, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Площадь обваловки, м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding ShellArea, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Диаметр зеркала разлива, м</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding SpillMirrorDiameter, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Радиус зеркала разлива, м</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding SpillMirrorRadius, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Плотность паров вещества, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding VaporDensity, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Cкорость выгорания жидкости, м/мин</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding LiquidBurnoutRate, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
-                        <StackPanel VerticalAlignment="Center">
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>Безразмерная скорость ветра</Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding DimensionlessWindSpeed, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>Геометрические параметры пламени (L/D)</Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding GeometricParameters, StringFormat={}{0:#0.00000}}" ToolTip="Геометрические параметры пламени"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Высота пламени разлития, м</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding FlameSpillHeight, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>Косинус угла наклона пламения</Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding CosSpillFireFlameAngle, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Угол наклона пламени (θ), <TextBlock BaselineOffset="15" Text="o"/></TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding SpillFireFlameAngle, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
-                        <StackPanel VerticalAlignment="Center">
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>L/r</Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Lr, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Ширина обваловки, м</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding ShellSideLenth, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Безопасное расстояние, м</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding SafeDistanse, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Эффективное время экспозиции, с</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding EffectiveExposureTime, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Расстояние до соседнего резервуара, м</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding AdjacentTankDistance, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Максимальное расстояние пламени, м</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding MaxFireDistance, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>Тепло, поглощаемое соседним резервуаром</Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding NeighborsAbsorbedHeat, StringFormat={}{0:#0.00000}}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
-                        <StackPanel>
-                            <ListView HorizontalContentAlignment="Center" Margin="5" ItemsSource="{Binding FireParameters}">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=Distance, StringFormat={}{0:#0.00000}}">Расстояние</GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=IncidentHeatFluxDensity, StringFormat={}{0:#0.00000}}">Плотность потока</GridViewColumn>
-                                        <GridViewColumn DisplayMemberBinding="{Binding Path=ProbitFunctionValue, StringFormat={}{0:#0.00000}}">Пробит-функция</GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </StackPanel>
+                <GroupBox Header="Характеристики резервуара" MaxWidth="300" BorderBrush="ForestGreen">
+                    <StackPanel>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Радиус основания резервуара, м</TextBlock>
+                                </Label>
+                                <TextBox Text="{Binding TankRadius}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Высота резервуара, м</TextBlock>
+                                </Label>
+                                <TextBox Text="{Binding TankHeight}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
                     </StackPanel>
                 </GroupBox>
-            </StackPanel>
-            <Button FontSize="50" Margin="5" Command="{Binding CalculateValues}" Height="200">Рассчитать значения</Button>
-        </StackPanel>
-    </StackPanel>
+                <GroupBox Header="Общие характеристики">
+                    <StackPanel>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Высота обваловки, м</TextBlock>
+                                </Label>
+                                <TextBox Text="{Binding ShellHeight}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Плотность потока собственного излучения, кВт/м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
+                                </Label>
+                                <TextBox Text="{Binding FluxDensity}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Скорость ветра, м/с</TextBlock>
+                                </Label>
+                                <TextBox Text="{Binding WindSpeed}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Скрытая теплота испарения жидкости, кДж/кг</TextBlock>
+                                </Label>
+                                <TextBox IsEnabled="True" Text="{Binding Substance.HiddenVaporizationHeat}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Низшая теплота сгорания топлива, кДж/кг</TextBlock>
+                                </Label>
+                                <TextBox Text="{Binding LowerHeatingValue}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Уровень заполнения резервуара</Label>
+                                <TextBox Text="{Binding TankFillLevel}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </GroupBox>
+            </WrapPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Column="1" Header="Расчитываемые значения" BorderBrush="Blue" Margin="5">
+            <WrapPanel Orientation="Vertical">
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Объем резервуара, м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding TankVolume, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Объем вещества в резервуаре, м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding SubstanceVolume, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Площадь обваловки, м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding ShellArea, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Диаметр зеркала разлива, м</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding SpillMirrorDiameter, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Радиус зеркала разлива, м</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding SpillMirrorRadius, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Плотность паров вещества, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding VaporDensity, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Cкорость выгорания жидкости, м/мин</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding LiquidBurnoutRate, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>Безразмерная скорость ветра</Label>
+                        <TextBox IsReadOnly="True" Text="{Binding DimensionlessWindSpeed, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>Геометрические параметры пламени (L/D)</Label>
+                        <TextBox IsReadOnly="True" Text="{Binding GeometricParameters, StringFormat={}{0:#0.00000}}" ToolTip="Геометрические параметры пламени"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Высота пламени разлития, м</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding FlameSpillHeight, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>Косинус угла наклона пламения</Label>
+                        <TextBox IsReadOnly="True" Text="{Binding CosSpillFireFlameAngle, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Угол наклона пламени (θ), <TextBlock BaselineOffset="15" Text="o"/></TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding SpillFireFlameAngle, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>L/r</Label>
+                        <TextBox IsReadOnly="True" Text="{Binding Lr, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Ширина обваловки, м</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding ShellSideLenth, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Безопасное расстояние, м</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding SafeDistanse, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Эффективное время экспозиции, с</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding EffectiveExposureTime, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Расстояние до соседнего резервуара, м</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding AdjacentTankDistance, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Максимальное расстояние пламени, м</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding MaxFireDistance, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>Тепло, поглощаемое соседним резервуаром</Label>
+                        <TextBox IsReadOnly="True" Text="{Binding NeighborsAbsorbedHeat, StringFormat={}{0:#0.00000}}"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <ListView HorizontalContentAlignment="Center" Margin="5" ItemsSource="{Binding FireParameters}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Distance, StringFormat={}{0:#0.00000}}">Расстояние</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=IncidentHeatFluxDensity, StringFormat={}{0:#0.00000}}">Плотность потока</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=ProbitFunctionValue, StringFormat={}{0:#0.00000}}">Пробит-функция</GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </WrapPanel>
+        </GroupBox>
+        <Button Grid.Row="1" Grid.ColumnSpan="2" FontSize="50" Margin="5" Command="{Binding CalculateValues}">Рассчитать значения</Button>
+    </Grid>
 </UserControl>

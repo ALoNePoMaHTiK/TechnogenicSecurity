@@ -8,287 +8,282 @@
     <UserControl.DataContext>
         <vm:ExplosionCalculationViewModel/>
     </UserControl.DataContext>
-    <StackPanel HorizontalAlignment="Left">
-        <StackPanel Margin="5">
-            <StackPanel Orientation="Horizontal">
-                <GroupBox Header="Указываемые характеристики" BorderBrush="ForestGreen" Margin="5">
-                    <StackPanel VerticalAlignment="Center">
-                        <GroupBox Header="Характеристики вещества" BorderBrush="Chartreuse">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <StackPanel VerticalAlignment="Center">
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>Вещество</Label>
-                                            <ComboBox ItemsSource="{Binding Substances}" DisplayMemberPath="SubstanceName" SelectedItem="{Binding Substance}"></ComboBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Объем вещества, м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
-                                            </Label>
-                                            <TextBox Text="{Binding SubstanceVolume}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Площадь испарения, м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
-                                            </Label>
-                                            <TextBox Text="{Binding EvaporationArea}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Расстояние до соседней постройки, м</TextBlock>
-                                            </Label>
-                                            <TextBox Text="{Binding NeighborBuildingDistance}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Температура остывания, К</TextBlock>
-                                            </Label>
-                                            <TextBox Text="{Binding CoolingTemperature}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Плотность вещества, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
-                                            </Label>
-                                            <TextBox IsEnabled="True" Text="{Binding Substance.Density}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                </StackPanel>
-                                <StackPanel VerticalAlignment="Center">
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Молярная масса, кг/кмоль</TextBlock>
-                                            </Label>
-                                            <TextBox IsEnabled="True" Text="{Binding Substance.MolarMass}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Скрытая теплота испарения, кДж/кг</TextBlock>
-                                            </Label>
-                                            <TextBox IsEnabled="True" Text="{Binding Substance.HiddenVaporizationHeat}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Температура кипения, К</TextBlock>
-                                            </Label>
-                                            <TextBox IsEnabled="True" Text="{Binding Substance.BoilingTemperature}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>Степень заполнения, [0..1]</TextBlock>
-                                            </Label>
-                                            <TextBox Text="{Binding FillingLevel}"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>НКПР, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
-                                            </Label>
-                                            <TextBox IsEnabled="True" Text="{Binding Substance.LCLS}" ToolTip="Нижний концентрационный предел распространения пламени"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>
-                                                <TextBlock>ВКПР, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
-                                            </Label>
-                                            <TextBox IsEnabled="True" Text="{Binding Substance.UCLS}" ToolTip="Верхний концентрационный предел распространения пламени"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Указываемые характеристики" BorderBrush="ForestGreen" Margin="5">
+            <WrapPanel Orientation="Vertical" VerticalAlignment="Center">
+                <GroupBox Header="Характеристики вещества" BorderBrush="Chartreuse">
+                    <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Вещество</Label>
+                                <ComboBox ItemsSource="{Binding Substances}" DisplayMemberPath="SubstanceName" SelectedItem="{Binding Substance}"></ComboBox>
                             </StackPanel>
                         </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Объем вещества, м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                                </Label>
+                                <TextBox Text="{Binding SubstanceVolume}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Площадь испарения, м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
+                                </Label>
+                                <TextBox Text="{Binding EvaporationArea}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Расстояние до соседней постройки, м</TextBlock>
+                                </Label>
+                                <TextBox Text="{Binding NeighborBuildingDistance}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Температура окружающей среды, К</TextBlock>
+                                </Label>
+                                <TextBox Text="{Binding CoolingTemperature}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Плотность вещества, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                                </Label>
+                                <TextBox IsEnabled="True" Text="{Binding Substance.Density}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Молярная масса, кг/кмоль</TextBlock>
+                                </Label>
+                                <TextBox IsEnabled="True" Text="{Binding Substance.MolarMass}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Скрытая теплота испарения, кДж/кг</TextBlock>
+                                </Label>
+                                <TextBox IsEnabled="True" Text="{Binding Substance.HiddenVaporizationHeat}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Температура кипения, К</TextBlock>
+                                </Label>
+                                <TextBox IsEnabled="True" Text="{Binding Substance.BoilingTemperature}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Степень заполнения, [0..1]</TextBlock>
+                                </Label>
+                                <TextBox Text="{Binding FillingLevel}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>НКПР, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                                </Label>
+                                <TextBox IsEnabled="True" Text="{Binding Substance.LCLS}" ToolTip="Нижний концентрационный предел распространения пламени"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>ВКПР, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                                </Label>
+                                <TextBox IsEnabled="True" Text="{Binding Substance.UCLS}" ToolTip="Верхний концентрационный предел распространения пламени"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                    </WrapPanel>
+                </GroupBox>
+                <GroupBox Header="Хакатеристики персонала" BorderBrush="ForestGreen">
+                    <WrapPanel Orientation="Vertical">
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Количество людей в соседнем здании, чел</TextBlock>
+                                </Label>
+                                <TextBox Text="{Binding PeopleCount}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>
+                                    <TextBlock>Плотность распределения персонала, чел/м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
+                                </Label>
+                                <TextBox Text="{Binding StaffDensity}"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                    </WrapPanel>
+                </GroupBox>
+            </WrapPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Расчитываемые характеристики" BorderBrush="ForestGreen" Margin="5">
+            <WrapPanel Orientation="Vertical">
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Масса паров в-ва в первичном облаке, кг</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding Results.FirstCloudMass , StringFormat={}{0:#0.00000}}" ToolTip="Масса паров в-ва в первичном облаке"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Давление насышенного пара в-ва, кПа</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding Results.SaturatedSteamPressure , StringFormat={}{0:#0.00000}}" ToolTip="Давление насышенного пара вещества при заданной температуре окружающей среды"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Интенсивность испарения, кг/(м<TextBlock BaselineOffset="15" Text="2"/>*с)</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding Results.EvaporationRate , StringFormat={}{0:#0.00000000}}" ToolTip="Интенсивность испарения разлившегося вещества"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Масса паров во вторичном облаке, кг</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding Results.SecondCloudMass , StringFormat={}{0:#0.00000}}" ToolTip="Масса паров во вторичном облаке"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Суммарная масса паров в-ва в облаке, кг</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding Results.TotalVaporMass , StringFormat={}{0:#0.00000}}" ToolTip="Суммарная масса паров вещества в облаке"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Радиус взрывного облака, м</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding Results.BlastingCloudRadius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус взрывного облака"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Плотность газа, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding Results.GasDensity , StringFormat={}{0:#0.00000}}" ToolTip="Плотность газа"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Радиус зоны детонационного взрыва, м</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding Results.DetonationAreaRedius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус зоны детонационного взрыва"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Приведенная масса паров, кг</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding Results.ReducedVaporMass , StringFormat={}{0:#0.00000}}" ToolTip="Приведенная масса паров"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Избыточное давление на фронте ударной волны, кПа</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding Results.WaveFrontExcessivePressure , StringFormat={}{0:#0.00000}}" ToolTip="Избыточное давление на фронте ударной волны"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>
+                            <TextBlock>Избыточное давление у соседней постройки, кПа</TextBlock>
+                        </Label>
+                        <TextBox IsReadOnly="True" Text="{Binding Results.NeighborBuildingExcessivePressure , StringFormat={}{0:#0.00000}}" ToolTip="Избыточное давление у соседней постройки"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox>
+                    <StackPanel>
+                        <Label>Импульс фазы сжатия ударной волны</Label>
+                        <TextBox IsReadOnly="True" Text="{Binding Results.ShockWaveCompressionPhaseImpulse , StringFormat={}{0:#0.00000}}" ToolTip="Величина импульса фазы сжатия ударной волны"></TextBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Вероятности разрушения">
+                    <StackPanel>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Слабая степень разрушения</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding Results.WeakDestructionProbability , StringFormat={}{0:#0.00000}}" ToolTip="Вероятность получения соседним зданием слабой степени разрушения"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Средняя степень разрушения</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding Results.MediumDestructionProbability , StringFormat={}{0:#0.00000}}" ToolTip="Вероятность получения соседним зданием средней степени разрушения"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Сильная степень разрушения</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding Results.SevereDestructionProbability , StringFormat={}{0:#0.00000}}" ToolTip="Вероятность получения соседним зданием сильной степени разрушения"></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Человеческие потери" BorderBrush="Aqua">
+                    <StackPanel>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Nбез</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding Results.HumanLosses1 , StringFormat={}{0:#0.00000}}" ToolTip=""></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Nсан</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding Results.HumanLosses2 , StringFormat={}{0:#0.00000}}" ToolTip=""></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox>
+                            <StackPanel>
+                                <Label>Nобщ</Label>
+                                <TextBox IsReadOnly="True" Text="{Binding Results.TotalHumanLosses , StringFormat={}{0:#0.00000}}" ToolTip=""></TextBox>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </GroupBox>
+            </WrapPanel>
+        </GroupBox>
 
-                        <GroupBox Header="Хакатеристики персонала" BorderBrush="ForestGreen">
-                            <StackPanel Orientation="Horizontal">
-                                <GroupBox>
-                                    <StackPanel>
-                                        <Label>
-                                            <TextBlock>Количество людей в соседнем здании, чел</TextBlock>
-                                        </Label>
-                                        <TextBox Text="{Binding PeopleCount}"></TextBox>
-                                    </StackPanel>
-                                </GroupBox>
-                                <GroupBox>
-                                    <StackPanel>
-                                        <Label>
-                                            <TextBlock>Плотность распределения персонала, чел/м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
-                                        </Label>
-                                        <TextBox Text="{Binding StaffDensity}"></TextBox>
-                                    </StackPanel>
-                                </GroupBox>
-                            </StackPanel>
-                        </GroupBox>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox Header="Расчитываемые характеристики" BorderBrush="ForestGreen" Margin="5">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel VerticalAlignment="Center">
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Масса паров в-ва в первичном облаке, кг</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.FirstCloudMass , StringFormat={}{0:#0.00000}}" ToolTip="Масса паров в-ва в первичном облаке"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Давление насышенного пара в-ва, кПа</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.SaturatedSteamPressure , StringFormat={}{0:#0.00000}}" ToolTip="Давление насышенного пара вещества при заданной температуре окружающей среды"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Интенсивность испарения, кг/(м<TextBlock BaselineOffset="15" Text="2"/>*с)</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.EvaporationRate , StringFormat={}{0:#0.00000000}}" ToolTip="Интенсивность испарения разлившегося вещества"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Масса паров во вторичном облаке, кг</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.SecondCloudMass , StringFormat={}{0:#0.00000}}" ToolTip="Масса паров во вторичном облаке"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Суммарная масса паров в-ва в облаке, кг</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.TotalVaporMass , StringFormat={}{0:#0.00000}}" ToolTip="Суммарная масса паров вещества в облаке"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Радиус взрывного облака, м</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.BlastingCloudRadius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус взрывного облака"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Плотность газа, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.GasDensity , StringFormat={}{0:#0.00000}}" ToolTip="Плотность газа"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
-                        <StackPanel VerticalAlignment="Center">
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Радиус зоны детонационного взрыва, м</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.DetonationAreaRedius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус зоны детонационного взрыва"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Приведенная масса паров, кг</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.ReducedVaporMass , StringFormat={}{0:#0.00000}}" ToolTip="Приведенная масса паров"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Избыточное давление на фронте ударной волны, кПа</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.WaveFrontExcessivePressure , StringFormat={}{0:#0.00000}}" ToolTip="Избыточное давление на фронте ударной волны"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Избыточное давление у соседней постройки, кПа</TextBlock>
-                                    </Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.NeighborBuildingExcessivePressure , StringFormat={}{0:#0.00000}}" ToolTip="Избыточное давление у соседней постройки"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>Импульс фазы сжатия ударной волны</Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.ShockWaveCompressionPhaseImpulse , StringFormat={}{0:#0.00000}}" ToolTip="Величина импульса фазы сжатия ударной волны"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox Header="Вероятности разрушения">
-                                <StackPanel>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>Слабая степень разрушения</Label>
-                                            <TextBox IsReadOnly="True" Text="{Binding Results.WeakDestructionProbability , StringFormat={}{0:#0.00000}}" ToolTip="Вероятность получения соседним зданием слабой степени разрушения"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>Средняя степень разрушения</Label>
-                                            <TextBox IsReadOnly="True" Text="{Binding Results.MediumDestructionProbability , StringFormat={}{0:#0.00000}}" ToolTip="Вероятность получения соседним зданием средней степени разрушения"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>Сильная степень разрушения</Label>
-                                            <TextBox IsReadOnly="True" Text="{Binding Results.SevereDestructionProbability , StringFormat={}{0:#0.00000}}" ToolTip="Вероятность получения соседним зданием сильной степени разрушения"></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
-                        <StackPanel VerticalAlignment="Center">
-                            <GroupBox Header="Человеческие потери">
-                                <StackPanel>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>Nбез</Label>
-                                            <TextBox IsReadOnly="True" Text="{Binding Results.HumanLosses1 , StringFormat={}{0:#0.00000}}" ToolTip=""></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>Nсан</Label>
-                                            <TextBox IsReadOnly="True" Text="{Binding Results.HumanLosses2 , StringFormat={}{0:#0.00000}}" ToolTip=""></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox>
-                                        <StackPanel>
-                                            <Label>Nобщ</Label>
-                                            <TextBox IsReadOnly="True" Text="{Binding Results.TotalHumanLosses , StringFormat={}{0:#0.00000}}" ToolTip=""></TextBox>
-                                        </StackPanel>
-                                    </GroupBox>
-                                </StackPanel>
-                            </GroupBox>
-                        </StackPanel>
-                    </StackPanel>
-                </GroupBox>
-            </StackPanel>
-            <Button FontSize="50" Margin="5" Command="{Binding CalculateValuesCommand}" Height="200">Рассчитать значения</Button>
-            <!--<Button FontSize="50" Margin="5" Command="{Binding GenerateWordReportCommand}" Height="200">Получить отчет</Button>-->
-        </StackPanel>
-    </StackPanel>
+        <Button Grid.Row="1" Grid.ColumnSpan="2" FontSize="50" Margin="5" Command="{Binding CalculateValuesCommand}">Рассчитать значения</Button>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" FontSize="50" Margin="5" Command="{Binding GenerateWordReportCommand}">Получить отчет</Button>
+    </Grid>
 </UserControl>
