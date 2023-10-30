@@ -8,7 +8,8 @@
     "GasAirMixExplosionEnergy": 2973,
     "Density": 740,
     "HiddenVaporizationHeat": 287.3,
-    "BoilingTemperature": 413
+    "BoilingTemperature": 413,
+    "StoichiometricGasConcentration": 2.1
   },
   {
     "SubstanceName": "Аммиак",
@@ -19,7 +20,8 @@
     "GasAirMixExplosionEnergy": 2370,
     "Density": 682.8,
     "HiddenVaporizationHeat": 100,
-    "BoilingTemperature": -34
+    "BoilingTemperature": -34,
+    "StoichiometricGasConcentration": 19.72
   },
   {
     "SubstanceName": "Ацетон",
@@ -30,7 +32,8 @@
     "GasAirMixExplosionEnergy": 3112,
     "Density": 0.87,
     "HiddenVaporizationHeat": 100,
-    "BoilingTemperature": 56
+    "BoilingTemperature": 56,
+    "StoichiometricGasConcentration": 4.99
   },
   {
     "SubstanceName": "Мазут",
@@ -41,6 +44,7 @@
     "GasAirMixExplosionEnergy": 3000,
     "Density": 920,
     "HiddenVaporizationHeat": 240.3,
-    "BoilingTemperature": 350
+    "BoilingTemperature": 350,
+    "StoichiometricGasConcentration": 100
   }
 ]

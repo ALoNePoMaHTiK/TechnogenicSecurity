@@ -7,9 +7,9 @@
         xmlns:uc="clr-namespace:TechnogenicSecurity.Views"
         mc:Ignorable="d"
         xmlns:vm ="clr-namespace:TechnogenicSecurity.ViewModels" 
-        SizeToContent="WidthAndHeight"
+        SizeToContent="Width"
         Width="Auto"
-        Height="Auto"
+        Height="800"
         WindowStartupLocation="CenterScreen"
         Title="Расчет пожара пролива">
     <Window.DataContext>

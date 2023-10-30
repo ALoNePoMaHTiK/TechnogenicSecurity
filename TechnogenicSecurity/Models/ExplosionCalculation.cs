@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TechnogenicSecurity.Models
 {
-    public class ExplosionCalculation
+    public class ExplosionCalculationResult
     {
         public double FirstCloudMass { get; set; }
         public double EvaporationRate { get; set; }
@@ -22,6 +22,12 @@ namespace TechnogenicSecurity.Models
         public double WaveFrontExcessivePressure { get; set; }
         public double NeighborBuildingExcessivePressure { get; set; }
         public double ShockWaveCompressionPhaseImpulse { get; set; }
+
+        public double WeakDestructionRadius { get; set; }
+        public double MediumDestructionRadius { get; set; }
+        public double SevereDestructionRadius { get; set; }
+        public double FullDestructionRadius { get; set; }
+
         public double WeakDestructionProbability { get; set; }
         public double MediumDestructionProbability { get; set; }
         public double SevereDestructionProbability { get; set; }

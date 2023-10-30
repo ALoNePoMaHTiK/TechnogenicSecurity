@@ -267,13 +267,24 @@ namespace TechnogenicSecurity.ViewModels
 
         #region Комманды
 
-        public DelegateCommand CalculateValues
+        public DelegateCommand CalculateValuesCommand
         {
             get
             {
                 return new DelegateCommand((obj) =>
                 {
                     Calculate();
+                });
+            }
+        }
+
+        public DelegateCommand GenerateReportCommand
+        {
+            get
+            {
+                return new DelegateCommand((obj) =>
+                {
+                    GenerateReport();
                 });
             }
         }
@@ -339,6 +350,36 @@ namespace TechnogenicSecurity.ViewModels
             MaxFireDistance = FlameSpillHeight / Math.Tan(1);
 
             NeighborsAbsorbedHeat = FluxDensity * 1 * Math.Exp(-7 * Math.Pow(10, -4) * (AdjacentTankDistance - MaxFireDistance));
+        }
+
+        private void GenerateReport()
+        {
+            IDictionary<string, string> properties = new Dictionary<string, string>();
+            properties.Add(getVariableData(Substance.MolarMass));
+            properties.Add(getVariableData(SubstanceVolume));
+            properties.Add(getVariableData(Substance.HiddenVaporizationHeat));
+            properties.Add(getVariableData(Substance.BoilingTemperature));
+            properties.Add(getVariableData(Substance.LCLS));
+            properties.Add(getVariableData(Substance.UCLS));
+            properties.Add(getVariableData(Substance.GasExplosionEnergy));
+            properties.Add(getVariableData(Substance.GasAirMixExplosionEnergy));
+            properties.Add(getVariableData(Substance.Density));
+
+            properties.Add(getVariableData(TankRadius));
+            properties.Add(getVariableData(TankHeight));
+            properties.Add(getVariableData(ShellHeight));
+            properties.Add(getVariableData(FluxDensity));
+            properties.Add(getVariableData(WindSpeed));
+            properties.Add(getVariableData(HeatOfLiquidVaporization));
+            properties.Add(getVariableData(LowerHeatingValue));
+            properties.Add(getVariableData(TankFillLevel));
+            properties.Add(getVariableData(AIR_DENSITY));
+            properties.Add(getVariableData(V0));
+        }
+
+        private KeyValuePair<string, string> getVariableData(object variable, [CallerArgumentExpression("variable")] string name = "value")
+        {
+            return KeyValuePair.Create(name, variable.ToString());
         }
 
         #endregion

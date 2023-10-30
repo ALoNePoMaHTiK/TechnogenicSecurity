@@ -1,0 +1,24 @@
+[
+  {
+    "ObjectTypeName": "Здания жилые, кирпичные многоэтажные",
+    "WeakDestructionRate": 9,
+    "MediumDestructionRate": 15,
+    "SevereDestructionRate": 25,
+    "FullDestructionRate": 35
+  },
+  {
+    "ObjectTypeName": "Здания промышленные, с тяжелым метал. или ж/б каркасом",
+    "WeakDestructionRate": 15,
+    "MediumDestructionRate": 35,
+    "SevereDestructionRate": 65,
+    "FullDestructionRate": 100
+  },
+  {
+    "ObjectTypeName": "Промышленные объекты, ТЭС",
+    "WeakDestructionRate": 12.5,
+    "MediumDestructionRate": 18.5,
+    "SevereDestructionRate": 27.5,
+    "FullDestructionRate": 32.5
+  }
+
+]

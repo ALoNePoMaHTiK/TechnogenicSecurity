@@ -17,5 +17,6 @@ namespace TechnogenicSecurity.Models
         public double Density { get; set; } //плотность стехиометрической смеси
         public double HiddenVaporizationHeat { get; set; }
         public double BoilingTemperature { get; set; }
+        public double StoichiometricGasConcentration { get; set; }
     }
 }

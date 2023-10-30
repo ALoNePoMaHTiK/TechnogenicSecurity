@@ -11,6 +11,8 @@ namespace TechnogenicSecurity
     public static class CatalogAdministrator
     {
         const string SUBSTANCES_PATH = "Catalogs\\Substances.json";
+        const string OBJECTS_TYPES_PATH = "Catalogs\\ObjectTypes.json";
+        const string STORING_METHODS_PATH = "Catalogs\\StoringFlammableSubstancesMethods.json";
 
         public static ObservableCollection<Substance> getSubstances()
         { 
@@ -23,6 +25,32 @@ namespace TechnogenicSecurity
             }
             catch (System.Exception e) { }
             return substances;
+        }
+
+        public static ObservableCollection<StoringMethod> getStoringMethods()
+        {
+            ObservableCollection<StoringMethod> storingMethods = new ObservableCollection<StoringMethod>();
+            try
+            {
+                string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string json = File.ReadAllText(Path.Combine(dir, STORING_METHODS_PATH));
+                storingMethods = JsonSerializer.Deserialize<ObservableCollection<StoringMethod>>(json);
+            }
+            catch (System.Exception e) { }
+            return storingMethods;
+        }
+
+        public static ObservableCollection<ObjectType> getNeigborObjects()
+        {
+            ObservableCollection<ObjectType> objects = new ObservableCollection<ObjectType>();
+            try
+            {
+                string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string json = File.ReadAllText(Path.Combine(dir, OBJECTS_TYPES_PATH));
+                objects = JsonSerializer.Deserialize<ObservableCollection<ObjectType>>(json);
+            }
+            catch (System.Exception e) { }
+            return objects;
         }
 
         public static void saveSubstances(ObservableCollection<Substance> substances)
