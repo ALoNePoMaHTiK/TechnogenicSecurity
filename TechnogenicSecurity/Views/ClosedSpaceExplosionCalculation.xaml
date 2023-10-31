@@ -1,0 +1,179 @@
+﻿<UserControl x:Class="TechnogenicSecurity.Views.ClosedSpaceExplosionCalculation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm ="clr-namespace:TechnogenicSecurity.ViewModels" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:ClosedSpaceExplosionCalculationViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Указываемые характеристики" BorderBrush="ForestGreen" Margin="5">
+            <ScrollViewer>
+                <WrapPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <GroupBox Header="Характеристики вещества" BorderBrush="Chartreuse">
+                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>Вещество</Label>
+                                    <ComboBox ItemsSource="{Binding Substances}" DisplayMemberPath="SubstanceName" SelectedItem="{Binding Substance}"></ComboBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Молярная масса, кг/кмоль</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding Substance.MolarMass}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Плотность вещества, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding Substance.Density}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Скрытая теплота испарения, Дж/кг</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding Substance.HiddenVaporizationHeat}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Температура кипения, К</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding Substance.BoilingTemperature}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                        </WrapPanel>
+                    </GroupBox>
+                    <GroupBox Header="Размеры помещения" BorderBrush="Chartreuse">
+                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Длина помещения, м</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding RoomLength}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Ширина помещения, м</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding RoomWidth}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Высота помещения, м</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding RoomHeight}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                        </WrapPanel>
+                    </GroupBox>
+                </WrapPanel>
+            </ScrollViewer>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Расчитываемые характеристики" BorderBrush="ForestGreen" Margin="5">
+            <ScrollViewer>
+                <WrapPanel Orientation="Vertical">
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock> Объем нефти, вышедшей из трудопроводов, м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.OilVolumeFromPipeline , StringFormat={}{0:#0.00000}}" ToolTip="Объем нефти, вышедшей из трудопроводов"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Объем нефти, поступившей в помещение насосной, м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.EnteringOilVolume , StringFormat={}{0:#0.00000}}" ToolTip="Объем нефти, поступившей в помещение насосной"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Площадь насосной, м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.RoomArea , StringFormat={}{0:#0.00000}}" ToolTip="Площадь насосной"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Площадь, занимаемая насосами, м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.PumpsArea , StringFormat={}{0:#0.00000}}" ToolTip="Площадь, занимаемая насосами"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Свободная площадь пола, м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.FreeRoomArea , StringFormat={}{0:#0.00000}}" ToolTip="Свободная площадь пола"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Слой вещества, м</TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.SubstanceLayer , StringFormat={}{0:#0.00000}}" ToolTip="Слой вещества"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Давление насыщенных паров в-ва, кПа</TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.SaturatedSteamPressure , StringFormat={}{0:#0.00000}}" ToolTip="Давление насыщенных паров вещества"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Интенсивность испарения нефти, кг/м<TextBlock BaselineOffset="15" Text="2"/>*с</TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.EvaporationRate , StringFormat={}{0:#0.00000}}" ToolTip="Интенсивность испарения нефти"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Масса паров нефти, при аварийном разливе, кг</TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.EmergencySpillVaporMass , StringFormat={}{0:#0.00000}}" ToolTip="Масса паров нефти, образующихся при аварийном разливе"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                </WrapPanel>
+            </ScrollViewer>
+        </GroupBox>
+        <Button Grid.Row="1" Grid.ColumnSpan="2" FontSize="50" Margin="5" Command="{Binding CalculateValuesCommand}">Рассчитать значения</Button>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" FontSize="50" Margin="5" Command="{Binding GenerateWordReportCommand}">Получить отчет</Button>
+    </Grid>
+</UserControl>

@@ -1,20 +1,69 @@
 [
   {
-    "ObjectTypeName": "Здания жилые, кирпичные многоэтажные",
+    "ObjectTypeName": "Резервуары, трубопроводы: стальные наземные",
+    "WeakDestructionRate": 35,
+    "MediumDestructionRate": 55,
+    "SevereDestructionRate": 80,
+    "FullDestructionRate": 90
+  },
+  {
+    "ObjectTypeName": "Резервуары, трубопроводы: газгольдеры и емкости ГСМ и хим. веществ",
+    "WeakDestructionRate": 20,
+    "MediumDestructionRate": 25,
+    "SevereDestructionRate": 35,
+    "FullDestructionRate": 40
+  },
+  {
+    "ObjectTypeName": "Резервуары, трубопроводы: частично заглубленные для нефтепродуктов",
+    "WeakDestructionRate": 20,
+    "MediumDestructionRate": 40,
+    "SevereDestructionRate": 75,
+    "FullDestructionRate": 100
+  },
+  {
+    "ObjectTypeName": "Резервуары, трубопроводы: подземные",
+    "WeakDestructionRate": 40,
+    "MediumDestructionRate": 75,
+    "SevereDestructionRate": 150,
+    "FullDestructionRate": 200
+  },
+  {
+    "ObjectTypeName": "Резервуары, трубопроводы: автозаправочные станции",
+    "WeakDestructionRate": 25,
+    "MediumDestructionRate": 35,
+    "SevereDestructionRate": 50,
+    "FullDestructionRate": 0
+  },
+  {
+    "ObjectTypeName": "Резервуары, трубопроводы: перекачивающие и компрессорные станции",
+    "WeakDestructionRate": 20,
+    "MediumDestructionRate": 60,
+    "SevereDestructionRate": 40,
+    "FullDestructionRate": 47.5
+  },
+  {
+    "ObjectTypeName": "Резервуары, трубопроводы: резервуарные парки (заполненные)",
+    "WeakDestructionRate": 30,
+    "MediumDestructionRate": 65,
+    "SevereDestructionRate": 80,
+    "FullDestructionRate": 95
+  },
+  {
+    "ObjectTypeName": "Здания жилые: кирпичные многоэтажные",
     "WeakDestructionRate": 9,
     "MediumDestructionRate": 15,
     "SevereDestructionRate": 25,
     "FullDestructionRate": 35
   },
   {
-    "ObjectTypeName": "Здания промышленные, с тяжелым метал. или ж/б каркасом",
+    "ObjectTypeName": "Здания промышленные: с тяжелым метал. или ж/б каркасом",
     "WeakDestructionRate": 15,
     "MediumDestructionRate": 35,
     "SevereDestructionRate": 65,
     "FullDestructionRate": 100
   },
   {
-    "ObjectTypeName": "Промышленные объекты, ТЭС",
+    "ObjectTypeName": "Промышленные объекты: ТЭС",
     "WeakDestructionRate": 12.5,
     "MediumDestructionRate": 18.5,
     "SevereDestructionRate": 27.5,

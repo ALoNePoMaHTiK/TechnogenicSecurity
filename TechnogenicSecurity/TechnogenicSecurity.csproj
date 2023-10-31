@@ -32,6 +32,9 @@
     <None Update="ReportTemplates\ОтчетВзрывШаблон.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="ReportTemplates\ОтчетПожарПроливаШаблон.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

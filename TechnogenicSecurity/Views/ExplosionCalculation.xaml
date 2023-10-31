@@ -21,13 +21,41 @@
         <GroupBox Header="Указываемые характеристики" BorderBrush="ForestGreen" Margin="5">
             <ScrollViewer>
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <GroupBox>
-                        <StackPanel>
-                            <Label>
-                                <TextBlock>Тип объекта</TextBlock>
-                            </Label>
-                            <ComboBox ItemsSource="{Binding NeighborObjects}" DisplayMemberPath="ObjectName" SelectedItem="{Binding NeighborObject}"></ComboBox>
-                        </StackPanel>
+                    <GroupBox Header="Характеристики объекта" BorderBrush="Chartreuse">
+                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Тип объекта</TextBlock>
+                                    </Label>
+                                    <ComboBox ItemsSource="{Binding ObjectTypes}" DisplayMemberPath="ObjectTypeName" SelectedItem="{Binding ObjectType}"></ComboBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>ΔPф для слабой степени разрушения, кПа</Label>
+                                    <TextBox Text="{Binding ObjectType.WeakDestructionRate}"  ToolTip="Избыточное давление на фронте ударной волны для слабой степени разрушения"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>ΔPф для средней степени разрушения, кПа</Label>
+                                    <TextBox Text="{Binding ObjectType.MediumDestructionRate}"  ToolTip="Избыточное давление на фронте ударной волны для средней степени разрушения"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>ΔPф для сильной степени разрушения, кПа</Label>
+                                    <TextBox Text="{Binding ObjectType.SevereDestructionRate}"  ToolTip="Избыточное давление на фронте ударной волны для сильной степени разрушения"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>ΔPф для полного разрушения, кПа</Label>
+                                    <TextBox Text="{Binding ObjectType.FullDestructionRate}"  ToolTip="Избыточное давление на фронте ударной волны для полного разрушения"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                        </WrapPanel>
                     </GroupBox>
                     <GroupBox Header="Характеристики вещества" BorderBrush="Chartreuse">
                         <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -57,14 +85,6 @@
                                         <TextBlock>Площадь испарения, м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
                                     </Label>
                                     <TextBox Text="{Binding EvaporationArea}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Расстояние до соседней постройки, м</TextBlock>
-                                    </Label>
-                                    <TextBox Text="{Binding NeighborBuildingDistance}"></TextBox>
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox>
@@ -228,7 +248,7 @@
                             <Label>
                                 <TextBlock>Радиус зоны детонационного взрыва, м</TextBlock>
                             </Label>
-                            <TextBox IsReadOnly="True" Text="{Binding Results.DetonationAreaRedius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус зоны детонационного взрыва"></TextBox>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.DetonationAreaRadius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус зоны детонационного взрыва"></TextBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox>
@@ -247,38 +267,30 @@
                             <TextBox IsReadOnly="True" Text="{Binding Results.WaveFrontExcessivePressure , StringFormat={}{0:#0.00000}}" ToolTip="Избыточное давление на фронте ударной волны"></TextBox>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox>
-                        <StackPanel>
-                            <Label>
-                                <TextBlock>Избыточное давление у соседней постройки, кПа</TextBlock>
-                            </Label>
-                            <TextBox IsReadOnly="True" Text="{Binding Results.NeighborBuildingExcessivePressure , StringFormat={}{0:#0.00000}}" ToolTip="Избыточное давление у соседней постройки"></TextBox>
-                        </StackPanel>
-                    </GroupBox>
-                    <GroupBox>
-                        <StackPanel>
-                            <Label>Импульс фазы сжатия ударной волны</Label>
-                            <TextBox IsReadOnly="True" Text="{Binding Results.ShockWaveCompressionPhaseImpulse , StringFormat={}{0:#0.00000}}" ToolTip="Величина импульса фазы сжатия ударной волны"></TextBox>
-                        </StackPanel>
-                    </GroupBox>
-                    <GroupBox Header="Вероятности разрушения">
+                    <GroupBox Header="Радиусы разрушения">
                         <StackPanel>
                             <GroupBox>
                                 <StackPanel>
                                     <Label>Слабая степень разрушения</Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.WeakDestructionProbability , StringFormat={}{0:#0.00000}}" ToolTip="Вероятность получения соседним зданием слабой степени разрушения"></TextBox>
+                                    <TextBox IsReadOnly="True" Text="{Binding Results.WeakDestructionRadius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус слабой степени разрушения"></TextBox>
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox>
                                 <StackPanel>
                                     <Label>Средняя степень разрушения</Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.MediumDestructionProbability , StringFormat={}{0:#0.00000}}" ToolTip="Вероятность получения соседним зданием средней степени разрушения"></TextBox>
+                                    <TextBox IsReadOnly="True" Text="{Binding Results.MediumDestructionRadius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус средней степени разрушения"></TextBox>
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox>
                                 <StackPanel>
                                     <Label>Сильная степень разрушения</Label>
-                                    <TextBox IsReadOnly="True" Text="{Binding Results.SevereDestructionProbability , StringFormat={}{0:#0.00000}}" ToolTip="Вероятность получения соседним зданием сильной степени разрушения"></TextBox>
+                                    <TextBox IsReadOnly="True" Text="{Binding Results.SevereDestructionRadius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус сильной степени разрушения"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>Полное разрушение</Label>
+                                    <TextBox IsReadOnly="True" Text="{Binding Results.FullDestructionRadius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус полного разрушения"></TextBox>
                                 </StackPanel>
                             </GroupBox>
                         </StackPanel>

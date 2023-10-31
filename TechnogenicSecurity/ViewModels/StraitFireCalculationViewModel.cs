@@ -1,8 +1,11 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Packaging;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -356,7 +359,6 @@ namespace TechnogenicSecurity.ViewModels
         {
             IDictionary<string, string> properties = new Dictionary<string, string>();
             properties.Add(getVariableData(Substance.MolarMass));
-            properties.Add(getVariableData(SubstanceVolume));
             properties.Add(getVariableData(Substance.HiddenVaporizationHeat));
             properties.Add(getVariableData(Substance.BoilingTemperature));
             properties.Add(getVariableData(Substance.LCLS));
@@ -364,6 +366,32 @@ namespace TechnogenicSecurity.ViewModels
             properties.Add(getVariableData(Substance.GasExplosionEnergy));
             properties.Add(getVariableData(Substance.GasAirMixExplosionEnergy));
             properties.Add(getVariableData(Substance.Density));
+
+            properties.Add(getVariableData(TankVolume));
+            properties.Add(getVariableData(SubstanceVolume));
+            properties.Add(getVariableData(ShellArea));
+            properties.Add(getVariableData(SpillMirrorRadius));
+            properties.Add(getVariableData(VaporDensity));
+            properties.Add(getVariableData(LiquidBurnoutRate));
+            properties.Add(getVariableData(DimensionlessWindSpeed));
+            properties.Add(getVariableData(GeometricParameters));
+            properties.Add(getVariableData(FlameSpillHeight));
+            properties.Add(getVariableData(CosSpillFireFlameAngle));
+            properties.Add(getVariableData(SpillFireFlameAngle));
+            properties.Add(getVariableData(Lr));
+            properties.Add(getVariableData(ShellSideLenth));
+            properties.Add(getVariableData(SafeDistanse));
+            properties.Add(getVariableData(EffectiveExposureTime));
+            properties.Add(getVariableData(AdjacentTankDistance));
+            properties.Add(getVariableData(MaxFireDistance));
+            properties.Add(getVariableData(NeighborsAbsorbedHeat));
+
+            for(int i = 11; i >=0; i--)
+            {
+                properties.Add($"Distance{i}",FireParameters[i].Distance.ToString("#0.#####"));
+                properties.Add($"IncidentHeatFluxDensity{i}",FireParameters[i].IncidentHeatFluxDensity.ToString("#0.#####"));
+                properties.Add($"ProbitFunctionValue{i}",FireParameters[i].ProbitFunctionValue.ToString("#0.#####"));
+            }
 
             properties.Add(getVariableData(TankRadius));
             properties.Add(getVariableData(TankHeight));
@@ -375,11 +403,42 @@ namespace TechnogenicSecurity.ViewModels
             properties.Add(getVariableData(TankFillLevel));
             properties.Add(getVariableData(AIR_DENSITY));
             properties.Add(getVariableData(V0));
+
+            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string path = Path.Combine(dir, "ReportTemplates\\ОтчетПожарПроливаШаблон.docx");
+
+            using (WordprocessingDocument template = WordprocessingDocument.Open(path, true))
+            {
+                string docText = null;
+                using (StreamReader sr = new StreamReader(template.MainDocumentPart.GetStream()))
+                {
+                    docText = sr.ReadToEnd();
+                }
+                foreach (var prop in properties)
+                {
+                    docText = docText.Replace(prop.Key, prop.Value);
+                }
+                using(StreamWriter w = new StreamWriter("report.txt", false))
+                {
+                    w.WriteLine(docText);
+                }
+                string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "ОтчетПожарПролива.docx");
+                using (WordprocessingDocument report = WordprocessingDocument.Create(savePath, DocumentFormat.OpenXml.WordprocessingDocumentType.Document))
+                {
+                    foreach (var part in template.Parts)
+                        report.AddPart(part.OpenXmlPart, part.RelationshipId);
+                    using (StreamWriter sw = new StreamWriter(report.MainDocumentPart.GetStream(FileMode.Create)))
+                    {
+                        sw.Write(docText);
+                    }
+                }
+
+            }
         }
 
-        private KeyValuePair<string, string> getVariableData(object variable, [CallerArgumentExpression("variable")] string name = "value")
+        private KeyValuePair<string, string> getVariableData(double variable, [CallerArgumentExpression("variable")] string name = "value")
         {
-            return KeyValuePair.Create(name, variable.ToString());
+            return KeyValuePair.Create(name, variable.ToString("#0.#####"));
         }
 
         #endregion

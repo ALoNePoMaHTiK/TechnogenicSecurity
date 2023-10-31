@@ -8,6 +8,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -284,5 +285,6 @@
             </ScrollViewer>
         </GroupBox>
         <Button Grid.Row="1" Grid.ColumnSpan="2" FontSize="50" Margin="5" Command="{Binding CalculateValuesCommand}">Рассчитать значения</Button>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" FontSize="50" Margin="5" Command="{Binding GenerateReportCommand}">Получить отчет</Button>
     </Grid>
 </UserControl>

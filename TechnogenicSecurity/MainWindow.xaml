@@ -43,6 +43,16 @@
                     </uc:ExplosionCalculation>
                 </TabItem.Content>
             </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    Расчет взрыва в закрытом пространстве
+                </TabItem.Header>
+                <TabItem.Content>
+                    <uc:ClosedSpaceExplosionCalculation DataContext="{Binding closedSpaceExplosionCalculationViewModel}">
+
+                    </uc:ClosedSpaceExplosionCalculation>
+                </TabItem.Content>
+            </TabItem>
             <!--<TabItem>
                 <TabItem.Header>
                     Справочники

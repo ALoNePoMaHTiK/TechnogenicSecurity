@@ -23,15 +23,14 @@ namespace TechnogenicSecurity.ViewModels
         public ExplosionCalculationViewModel()
         {
             Substances = CatalogAdministrator.getSubstances();
-            NeighborObjects = CatalogAdministrator.getNeigborObjects();
+            ObjectTypes = CatalogAdministrator.getNeigborObjects();
             StoringMethods = CatalogAdministrator.getStoringMethods();
             StoringMethod = StoringMethods[0];
-            NeighborObject = NeighborObjects[0];
+            ObjectType = ObjectTypes[0];
             Substance = Substances[0];
 
             SubstanceVolume = 500;
             EvaporationArea = 400;
-            NeighborBuildingDistance = 50;
             CoolingTemperature = 300;
             FillingLevel = 0.8;
 
@@ -50,12 +49,12 @@ namespace TechnogenicSecurity.ViewModels
             set { _Substances = value; }
         }
 
-        private ObservableCollection<ObjectType> _ObjectsTypes;
+        private ObservableCollection<ObjectType> _ObjectTypes;
 
-        public ObservableCollection<ObjectType> ObjectsTypes
+        public ObservableCollection<ObjectType> ObjectTypes
         {
-            get { return _ObjectsTypes; }
-            set { _ObjectsTypes = value; }
+            get { return _ObjectTypes; }
+            set { _ObjectTypes = value; }
         }
 
         private ObservableCollection<StoringMethod> _StoringMethods;
@@ -102,13 +101,6 @@ namespace TechnogenicSecurity.ViewModels
         {
             get { return _EvaporationArea; }
             set { _EvaporationArea = value; OnPropertyChanged(); }
-        }
-
-        private double _NeighborBuildingDistance;
-        public double NeighborBuildingDistance
-        {
-            get { return _NeighborBuildingDistance; }
-            set { _NeighborBuildingDistance = value; OnPropertyChanged(); }
         }
 
         private double _CoolingTemperature;
@@ -195,7 +187,7 @@ namespace TechnogenicSecurity.ViewModels
             newResults.TotalVaporMass = newResults.FirstCloudMass + newResults.SecondCloudMass;
             newResults.GasDensity = Substance.MolarMass / (V0 * (1 + 0.00367 * AirTemperature));
             newResults.BlastingCloudRadius = 3.1501 * Math.Sqrt(EvaporationTime / 3600) * Math.Pow(newResults.SaturatedSteamPressure / Substance.LCLS, 0.813) * Math.Pow(newResults.TotalVaporMass / (newResults.GasDensity * newResults.SaturatedSteamPressure),1.0/3.0);
-            newResults.DetonationAreaRedius = 10 * Math.Pow(newResults.TotalVaporMass * StoringMethod.Value / (Substance.MolarMass * Substance.StoichiometricGasConcentration),1.0/3.0);
+            newResults.DetonationAreaRadius = 10 * Math.Pow(newResults.TotalVaporMass * StoringMethod.Value / (Substance.MolarMass * Substance.StoichiometricGasConcentration),1.0/3.0);
             newResults.ReducedVaporMass = (46200.0 / 4520) * newResults.TotalVaporMass * Z;
             newResults.WaveFrontExcessivePressure = 81 * Math.Pow(newResults.ReducedVaporMass, 1.0 / 3) / newResults.BlastingCloudRadius + 303 * Math.Pow(newResults.ReducedVaporMass, 2.0 / 3.0) / Math.Pow(newResults.BlastingCloudRadius,2) + 505 * newResults.ReducedVaporMass / Math.Pow(newResults.BlastingCloudRadius, 3);
 
@@ -204,11 +196,6 @@ namespace TechnogenicSecurity.ViewModels
             newResults.SevereDestructionRadius = getBlastingRadius(ObjectType.SevereDestructionRate, newResults.ReducedVaporMass);
             newResults.FullDestructionRadius = getBlastingRadius(ObjectType.FullDestructionRate, newResults.ReducedVaporMass);
 
-            newResults.NeighborBuildingExcessivePressure = 81 * (Math.Pow(newResults.ReducedVaporMass, 1.0 / 3) / NeighborBuildingDistance) + 303 * (Math.Pow(newResults.ReducedVaporMass, 2.0 / 3.0) / Math.Pow(NeighborBuildingDistance, 2)) + 505 * newResults.ReducedVaporMass / Math.Pow(NeighborBuildingDistance, 3);
-            newResults.ShockWaveCompressionPhaseImpulse = 0.123 * Math.Pow(newResults.ReducedVaporMass, 2.0 / 3) / NeighborBuildingDistance;
-            newResults.WeakDestructionProbability = 5 - 0.26 * Math.Log(Math.Pow(4.6 / newResults.NeighborBuildingExcessivePressure, 3.9) + Math.Pow(0.11 / newResults.ShockWaveCompressionPhaseImpulse, 5.0));
-            newResults.MediumDestructionProbability = 5 - 0.26 * Math.Log(Math.Pow(17.5 / newResults.NeighborBuildingExcessivePressure, 8.4) + Math.Pow(0.29 / newResults.ShockWaveCompressionPhaseImpulse, 9.3));
-            newResults.SevereDestructionProbability = 5 - 0.26 * Math.Log(Math.Pow(40.0 / newResults.NeighborBuildingExcessivePressure, 7.4) + Math.Pow(0.26 / newResults.ShockWaveCompressionPhaseImpulse, 11.3));
             newResults.HumanLosses1 = (StaffDensity/1000)*Math.Pow(newResults.ReducedVaporMass,2.0/3);
             newResults.HumanLosses2 = 4 * newResults.HumanLosses1;
             newResults.TotalHumanLosses = newResults.HumanLosses1 + newResults.HumanLosses2;
@@ -226,6 +213,8 @@ namespace TechnogenicSecurity.ViewModels
             properties.Add(getVariableData(Substance.GasExplosionEnergy));
             properties.Add(getVariableData(Substance.GasAirMixExplosionEnergy));
             properties.Add(getVariableData(Substance.Density));
+            properties.Add(getVariableData(Substance.StoichiometricGasConcentration));
+            properties.Add(getVariableData(StoringMethod.Value));
 
             properties.Add(getVariableData(Results.FirstCloudMass));
             properties.Add(getVariableData(Results.SaturatedSteamPressure));
@@ -234,13 +223,13 @@ namespace TechnogenicSecurity.ViewModels
             properties.Add(getVariableData(Results.TotalVaporMass));
             properties.Add(getVariableData(Results.GasDensity));
             properties.Add(getVariableData(Results.BlastingCloudRadius));
+            properties.Add(getVariableData(Results.DetonationAreaRadius));
             properties.Add(getVariableData(Results.ReducedVaporMass));
             properties.Add(getVariableData(Results.WaveFrontExcessivePressure));
-            properties.Add(getVariableData(Results.NeighborBuildingExcessivePressure));
-            properties.Add(getVariableData(Results.ShockWaveCompressionPhaseImpulse));
-            properties.Add(getVariableData(Results.WeakDestructionProbability));
-            properties.Add(getVariableData(Results.MediumDestructionProbability));
-            properties.Add(getVariableData(Results.SevereDestructionProbability));
+            properties.Add(getVariableData(Results.WeakDestructionRadius));
+            properties.Add(getVariableData(Results.MediumDestructionRadius));
+            properties.Add(getVariableData(Results.SevereDestructionRadius));
+            properties.Add(getVariableData(Results.FullDestructionRadius));
             properties.Add(getVariableData(Results.HumanLosses1));
             properties.Add(getVariableData(Results.HumanLosses2));
             properties.Add(getVariableData(Results.TotalHumanLosses));
@@ -264,10 +253,6 @@ namespace TechnogenicSecurity.ViewModels
                 {
                     docText = sr.ReadToEnd();
                 }
-                using (StreamWriter writer = new StreamWriter("file.txt", false))
-                {
-                    writer.WriteLine(docText);
-                }
                 foreach (var prop in properties)
                 {
                     docText = docText.Replace(prop.Key, prop.Value);
@@ -286,9 +271,9 @@ namespace TechnogenicSecurity.ViewModels
             }
         }
 
-        private KeyValuePair<string, string> getVariableData(object variable, [CallerArgumentExpression("variable")] string name = "value")
+        private KeyValuePair<string, string> getVariableData(double variable, [CallerArgumentExpression("variable")] string name = "value")
         {
-            return KeyValuePair.Create(name, variable.ToString());
+            return KeyValuePair.Create(name, variable.ToString("#0.#####"));
         }
 
         private double getBlastingRadius(double WaveFrontExcessivePressure, double ReducedVaporMass)
@@ -298,11 +283,11 @@ namespace TechnogenicSecurity.ViewModels
             for (double radius = 5; radius <= 1000; radius += 0.25)
             {
                 double p = 81 * Math.Pow(ReducedVaporMass, 1.0 / 3) / radius + 303 * Math.Pow(ReducedVaporMass, 2.0 / 3.0) / Math.Pow(radius, 2) + 505 * ReducedVaporMass / Math.Pow(radius, 3);
-                if (Math.Abs(22.0 - p) < 1)
+                if (Math.Abs(WaveFrontExcessivePressure - p) < 1)
                 {
-                    if (Math.Abs(22.0 - p) < minOffset)
+                    if (Math.Abs(WaveFrontExcessivePressure - p) < minOffset)
                     {
-                        minOffset = Math.Abs(22.0 - p);
+                        minOffset = Math.Abs(WaveFrontExcessivePressure - p);
                         minRadius = radius;
                     }
                 }
