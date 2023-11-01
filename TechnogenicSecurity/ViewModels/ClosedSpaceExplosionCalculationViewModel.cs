@@ -43,6 +43,8 @@ namespace TechnogenicSecurity.ViewModels
             IndoorAirSpeed = 1;
             SubstanceTemperature = 22.4;
             AutoShutdownTime = 120;
+            RoomFreeVolumePersent = 0.8;
+            Betta = 26.5;
 
             Calculate();
         }
@@ -164,6 +166,20 @@ namespace TechnogenicSecurity.ViewModels
             get { return _AutoShutdownTime; }
             set { _AutoShutdownTime = value; OnPropertyChanged(); }
         }
+        
+        private double _RoomFreeVolumePersent;
+        public double RoomFreeVolumePersent
+        {
+            get { return _RoomFreeVolumePersent; }
+            set { _RoomFreeVolumePersent = value; OnPropertyChanged(); }
+        }
+
+        private double _Betta;
+        public double Betta
+        {
+            get { return _Betta; }
+            set { _Betta = value; OnPropertyChanged(); }
+        }
 
         #endregion
 
@@ -189,6 +205,9 @@ namespace TechnogenicSecurity.ViewModels
 
         const double AtmosphericPressure = 101.3;
         const double R = 8310;
+        const double V0 = 22.4;
+        const double Z = 0.3;
+        const double Kn = 3;
 
         #endregion
 
@@ -204,7 +223,12 @@ namespace TechnogenicSecurity.ViewModels
             newResults.SaturatedSteamPressure = AtmosphericPressure * Math.Exp(Substance.HiddenVaporizationHeat * Substance.MolarMass * (Math.Pow(Substance.BoilingTemperature + 273, -1) - Math.Pow(SubstanceTemperature + 273, -1)) / R);
             newResults.EvaporationRate = (Math.Pow(10, -6) * newResults.SaturatedSteamPressure * 7.7 * Math.Sqrt(Substance.MolarMass));
             newResults.EmergencySpillVaporMass = newResults.EvaporationRate * newResults.FreeRoomArea * 3600;
-
+            newResults.SpilledOilMass = newResults.EnteringOilVolume * Substance.Density;
+            newResults.EvaporatedOilPersent = newResults.EmergencySpillVaporMass / newResults.SpilledOilMass * 100;
+            newResults.VaporDensity = Substance.MolarMass/(V0 * (1+0.00367*SubstanceTemperature));
+            newResults.StoichiometricGasConcentration = 100 / (1 + 4.84 * Betta);
+            newResults.RoomFreeVolume = RoomLength*RoomWidth*RoomHeight* RoomFreeVolumePersent;
+            newResults.ShockWaveExcessivePressure = (100*(900-AtmosphericPressure)* newResults.EmergencySpillVaporMass*Z)/((1+EmergencyVentilationRate) * newResults.RoomFreeVolume * newResults.VaporDensity * newResults.StoichiometricGasConcentration * Kn);
             Results = newResults;
         }
     }

@@ -20,6 +20,8 @@ namespace TechnogenicSecurity.Models
         public double SpilledOilMass{ get; set; }
         public double EvaporatedOilPersent{ get; set; }
         public double VaporDensity{ get; set; }
+        public double StoichiometricGasConcentration { get; set; }
+        public double RoomFreeVolume { get; set; }
         public double ShockWaveExcessivePressure { get; set; }
     }
 }

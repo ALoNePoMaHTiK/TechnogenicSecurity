@@ -49,6 +49,14 @@
                                     <TextBox IsEnabled="True" Text="{Binding Substance.Density}"></TextBox>
                                 </StackPanel>
                             </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Скрытая теплота испарения, кДж/кг</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding Substance.HiddenVaporizationHeat}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Характеристики резервуара" MaxWidth="300" BorderBrush="ForestGreen">
@@ -97,15 +105,6 @@
                                     <TextBox Text="{Binding WindSpeed}"></TextBox>
                                 </StackPanel>
                             </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Скрытая теплота испарения жидкости, кДж/кг</TextBlock>
-                                    </Label>
-                                    <TextBox IsEnabled="True" Text="{Binding Substance.HiddenVaporizationHeat}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-
                             <GroupBox>
                                 <StackPanel>
                                     <Label>

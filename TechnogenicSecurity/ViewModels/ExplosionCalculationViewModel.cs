@@ -235,6 +235,9 @@ namespace TechnogenicSecurity.ViewModels
             properties.Add(getVariableData(Results.TotalHumanLosses));
 
             properties.Add(getVariableData(EvaporationArea));
+            properties.Add(getVariableData(PeopleCount));
+            properties.Add(getVariableData(FillingLevel));
+            properties.Add(getVariableData(StaffDensity));
             properties.Add(getVariableData(EvaporationTime));
             properties.Add(getVariableData(AirTemperature));
             properties.Add(getVariableData(GasolineVaporVolume));
@@ -280,7 +283,7 @@ namespace TechnogenicSecurity.ViewModels
         {
             double minRadius = 100;
             double minOffset = 100;
-            for (double radius = 5; radius <= 1000; radius += 0.25)
+            for (double radius = 1; radius <= 1000; radius += 0.25)
             {
                 double p = 81 * Math.Pow(ReducedVaporMass, 1.0 / 3) / radius + 303 * Math.Pow(ReducedVaporMass, 2.0 / 3.0) / Math.Pow(radius, 2) + 505 * ReducedVaporMass / Math.Pow(radius, 3);
                 if (Math.Abs(WaveFrontExcessivePressure - p) < 1)

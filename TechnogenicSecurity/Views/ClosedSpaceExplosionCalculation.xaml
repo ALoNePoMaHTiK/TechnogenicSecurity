@@ -170,6 +170,54 @@
                             <TextBox IsReadOnly="True" Text="{Binding Results.EmergencySpillVaporMass , StringFormat={}{0:#0.00000}}" ToolTip="Масса паров нефти, образующихся при аварийном разливе"></TextBox>
                         </StackPanel>
                     </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Масса разлившейся нефти, кг</TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.SpilledOilMass , StringFormat={}{0:#0.00000}}" ToolTip="Масса разлившейся нефти"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Испарится нефти, %</TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.EvaporatedOilPersent , StringFormat={}{0:#0.000}}" ToolTip="Испарится нефти"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Плотность паров нефти, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.VaporDensity , StringFormat={}{0:#0.00000}}" ToolTip="Плотность паров нефти"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Cстх, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.StoichiometricGasConcentration , StringFormat={}{0:#0.00000}}" ToolTip="Cтехиометрическая концентрация газа в смеси"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Свободный объем помещения, м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.RoomFreeVolume , StringFormat={}{0:#0.00000}}" ToolTip="Свободный объем помещения"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox>
+                        <StackPanel>
+                            <Label>
+                                <TextBlock>Избыточное давление во фронте ударной волны при взрыве, кПа</TextBlock>
+                            </Label>
+                            <TextBox IsReadOnly="True" Text="{Binding Results.ShockWaveExcessivePressure , StringFormat={}{0:#0.00000}}" ToolTip="Избыточное давление во фронте ударной волны при взрыве"></TextBox>
+                        </StackPanel>
+                    </GroupBox>
                 </WrapPanel>
             </ScrollViewer>
         </GroupBox>
