@@ -271,25 +271,25 @@
                         <StackPanel>
                             <GroupBox>
                                 <StackPanel>
-                                    <Label>Слабая степень разрушения</Label>
+                                    <Label>Слабая степень разрушения, м</Label>
                                     <TextBox IsReadOnly="True" Text="{Binding Results.WeakDestructionRadius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус слабой степени разрушения"></TextBox>
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox>
                                 <StackPanel>
-                                    <Label>Средняя степень разрушения</Label>
+                                    <Label>Средняя степень разрушения, м</Label>
                                     <TextBox IsReadOnly="True" Text="{Binding Results.MediumDestructionRadius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус средней степени разрушения"></TextBox>
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox>
                                 <StackPanel>
-                                    <Label>Сильная степень разрушения</Label>
+                                    <Label>Сильная степень разрушения, м</Label>
                                     <TextBox IsReadOnly="True" Text="{Binding Results.SevereDestructionRadius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус сильной степени разрушения"></TextBox>
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox>
                                 <StackPanel>
-                                    <Label>Полное разрушение</Label>
+                                    <Label>Полное разрушение, м</Label>
                                     <TextBox IsReadOnly="True" Text="{Binding Results.FullDestructionRadius , StringFormat={}{0:#0.00000}}" ToolTip="Радиус полного разрушения"></TextBox>
                                 </StackPanel>
                             </GroupBox>

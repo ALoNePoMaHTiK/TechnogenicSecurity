@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TechnogenicSecurity.Models;
 
 namespace TechnogenicSecurity.ViewModels
@@ -407,32 +408,35 @@ namespace TechnogenicSecurity.ViewModels
             string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string path = Path.Combine(dir, "ReportTemplates\\ОтчетПожарПроливаШаблон.docx");
 
-            using (WordprocessingDocument template = WordprocessingDocument.Open(path, true))
+            try
             {
-                string docText = null;
-                using (StreamReader sr = new StreamReader(template.MainDocumentPart.GetStream()))
+                using (WordprocessingDocument template = WordprocessingDocument.Open(path, true))
                 {
-                    docText = sr.ReadToEnd();
-                }
-                foreach (var prop in properties)
-                {
-                    docText = docText.Replace(prop.Key, prop.Value);
-                }
-                using(StreamWriter w = new StreamWriter("report.txt", false))
-                {
-                    w.WriteLine(docText);
-                }
-                string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "ОтчетПожарПролива.docx");
-                using (WordprocessingDocument report = WordprocessingDocument.Create(savePath, DocumentFormat.OpenXml.WordprocessingDocumentType.Document))
-                {
-                    foreach (var part in template.Parts)
-                        report.AddPart(part.OpenXmlPart, part.RelationshipId);
-                    using (StreamWriter sw = new StreamWriter(report.MainDocumentPart.GetStream(FileMode.Create)))
+                    string docText = null;
+                    using (StreamReader sr = new StreamReader(template.MainDocumentPart.GetStream()))
                     {
-                        sw.Write(docText);
+                        docText = sr.ReadToEnd();
                     }
+                    foreach (var prop in properties)
+                    {
+                        docText = docText.Replace(prop.Key, prop.Value);
+                    }
+                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "ОтчетПожарПролива.docx");
+                    using (WordprocessingDocument report = WordprocessingDocument.Create(savePath, DocumentFormat.OpenXml.WordprocessingDocumentType.Document))
+                    {
+                        foreach (var part in template.Parts)
+                            report.AddPart(part.OpenXmlPart, part.RelationshipId);
+                        using (StreamWriter sw = new StreamWriter(report.MainDocumentPart.GetStream(FileMode.Create)))
+                        {
+                            sw.Write(docText);
+                        }
+                    }
+                    MessageBox.Show($"Отчет успешно сформиирован!\nРасположение : {savePath}","Отчет успешно сформирован", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Ошибка при формировании отчета!\n{e.Message}", "Уведомление об ошибке", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:vm ="clr-namespace:TechnogenicSecurity.ViewModels" 
+             xmlns:vm ="clr-namespace:TechnogenicSecurity.ViewModels"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
@@ -62,6 +63,14 @@
                                     <TextBox IsEnabled="True" Text="{Binding Substance.BoilingTemperature}"></TextBox>
                                 </StackPanel>
                             </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Температура вещества, С<TextBlock BaselineOffset="15" Text="o"/></TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding SubstanceTemperature}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
                         </WrapPanel>
                     </GroupBox>
                     <GroupBox Header="Размеры помещения" BorderBrush="Chartreuse">
@@ -88,6 +97,130 @@
                                         <TextBlock>Высота помещения, м</TextBlock>
                                     </Label>
                                     <TextBox IsEnabled="True" Text="{Binding RoomHeight}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                        </WrapPanel>
+                    </GroupBox>
+                    <GroupBox Header="Параметры насосов" BorderBrush="Chartreuse">
+                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Количество насосов, ед</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding PumpCount}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Производительность насоса, Q, м<TextBlock BaselineOffset="15" Text="3"/>/с</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding PumpProductivity}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Объем заполнения насоса, Vап, м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding PumpFillVolume}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Площадь, занимаемая насосом, м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding PumpArea}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Длина подводящего нп, I1, м</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding SupplyPipelineLength}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Длина отводящего нп, I2, м</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding OutletPipelineLength}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Диаметр нефтепровода d, м</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding PipelineDiameter}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Кратность аварийной вентиляции, Аав, ч<TextBlock BaselineOffset="15" Text="-1"/></TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding EmergencyVentilationRate}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Время автоматического отключения t, с</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding AutoShutdownTime}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                        </WrapPanel>
+                    </GroupBox>
+                    <GroupBox Header="Общие параметры" BorderBrush="Chartreuse">
+                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Бетта, м</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="True" Text="{Binding Betta}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Скорость воздуха в помещении, м/c</TextBlock>
+                                    </Label>
+                                    <ComboBox SelectedValue="{Binding IndoorAirSpeed}">
+                                        <sys:Double>0</sys:Double>
+                                        <sys:Double>0.1</sys:Double>
+                                        <sys:Double>0.2</sys:Double>
+                                        <sys:Double>0.5</sys:Double>
+                                        <sys:Double>1.0</sys:Double>
+                                    </ComboBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Температура воздуха в помещении, С<TextBlock BaselineOffset="15" Text="o"/></TextBlock>
+                                    </Label>
+                                    <ComboBox SelectedValue="{Binding IndoorTemperature}">
+                                        <sys:Double>10</sys:Double>
+                                        <sys:Double>15</sys:Double>
+                                        <sys:Double>20</sys:Double>
+                                        <sys:Double>30</sys:Double>
+                                        <sys:Double>35</sys:Double>
+                                    </ComboBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Значение коэффициента η</TextBlock>
+                                    </Label>
+                                    <TextBox IsEnabled="False" Text="{Binding AirSpeedAndTemperatureFlowCoefficient}"></TextBox>
                                 </StackPanel>
                             </GroupBox>
                         </WrapPanel>

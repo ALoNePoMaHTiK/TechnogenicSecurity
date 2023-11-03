@@ -1,0 +1,128 @@
+[
+  {
+    "IndoorAirSpeed": 0.0,
+    "IndoorTemperature": 10,
+    "AirSpeedAndTemperatureFlowCoefficient": 1.0
+  },
+  {
+    "IndoorAirSpeed": 0.0,
+    "IndoorTemperature": 15,
+    "AirSpeedAndTemperatureFlowCoefficient": 1.0
+  },
+  {
+    "IndoorAirSpeed": 0.0,
+    "IndoorTemperature": 20,
+    "AirSpeedAndTemperatureFlowCoefficient": 1.0
+  },
+  {
+    "IndoorAirSpeed": 0.0,
+    "IndoorTemperature": 30,
+    "AirSpeedAndTemperatureFlowCoefficient": 1.0
+  },
+  {
+    "IndoorAirSpeed": 0.0,
+    "IndoorTemperature": 35,
+    "AirSpeedAndTemperatureFlowCoefficient": 1.0
+  },
+  {
+    "IndoorAirSpeed": 0.1,
+    "IndoorTemperature": 10,
+    "AirSpeedAndTemperatureFlowCoefficient": 3.0
+  },
+  {
+    "IndoorAirSpeed": 0.1,
+    "IndoorTemperature": 15,
+    "AirSpeedAndTemperatureFlowCoefficient": 2.6
+  },
+  {
+    "IndoorAirSpeed": 0.1,
+    "IndoorTemperature": 20,
+    "AirSpeedAndTemperatureFlowCoefficient": 2.4
+  },
+  {
+    "IndoorAirSpeed": 0.1,
+    "IndoorTemperature": 30,
+    "AirSpeedAndTemperatureFlowCoefficient": 1.8
+  },
+  {
+    "IndoorAirSpeed": 0.1,
+    "IndoorTemperature": 35,
+    "AirSpeedAndTemperatureFlowCoefficient": 1.6
+  },
+  {
+    "IndoorAirSpeed": 0.2,
+    "IndoorTemperature": 10,
+    "AirSpeedAndTemperatureFlowCoefficient": 4.6
+  },
+  {
+    "IndoorAirSpeed": 0.2,
+    "IndoorTemperature": 15,
+    "AirSpeedAndTemperatureFlowCoefficient": 3.8
+  },
+  {
+    "IndoorAirSpeed": 0.2,
+    "IndoorTemperature": 20,
+    "AirSpeedAndTemperatureFlowCoefficient": 3.5
+  },
+  {
+    "IndoorAirSpeed": 0.2,
+    "IndoorTemperature": 30,
+    "AirSpeedAndTemperatureFlowCoefficient": 2.4
+  },
+  {
+    "IndoorAirSpeed": 0.2,
+    "IndoorTemperature": 35,
+    "AirSpeedAndTemperatureFlowCoefficient": 2.3
+  },
+  {
+    "IndoorAirSpeed": 0.5,
+    "IndoorTemperature": 10,
+    "AirSpeedAndTemperatureFlowCoefficient": 6.6
+  },
+  {
+    "IndoorAirSpeed": 0.5,
+    "IndoorTemperature": 15,
+    "AirSpeedAndTemperatureFlowCoefficient": 5.7
+  },
+  {
+    "IndoorAirSpeed": 0.5,
+    "IndoorTemperature": 20,
+    "AirSpeedAndTemperatureFlowCoefficient": 5.4
+  },
+  {
+    "IndoorAirSpeed": 0.5,
+    "IndoorTemperature": 30,
+    "AirSpeedAndTemperatureFlowCoefficient": 3.6
+  },
+  {
+    "IndoorAirSpeed": 0.5,
+    "IndoorTemperature": 35,
+    "AirSpeedAndTemperatureFlowCoefficient": 3.2
+  },
+  {
+    "IndoorAirSpeed": 1.0,
+    "IndoorTemperature": 10,
+    "AirSpeedAndTemperatureFlowCoefficient": 10.0
+  },
+  {
+    "IndoorAirSpeed": 1.0,
+    "IndoorTemperature": 15,
+    "AirSpeedAndTemperatureFlowCoefficient": 8.7
+  },
+  {
+    "IndoorAirSpeed": 1.0,
+    "IndoorTemperature": 20,
+    "AirSpeedAndTemperatureFlowCoefficient": 7.7
+  },
+  {
+    "IndoorAirSpeed": 1.0,
+    "IndoorTemperature": 30,
+    "AirSpeedAndTemperatureFlowCoefficient": 5.6
+  },
+  {
+    "IndoorAirSpeed": 1.0,
+    "IndoorTemperature": 35,
+    "AirSpeedAndTemperatureFlowCoefficient": 4.6
+  }
+
+]

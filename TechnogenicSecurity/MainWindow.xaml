@@ -43,7 +43,7 @@
                     </uc:ExplosionCalculation>
                 </TabItem.Content>
             </TabItem>
-            <!--<TabItem>
+            <TabItem>
                 <TabItem.Header>
                     Расчет взрыва в закрытом пространстве
                 </TabItem.Header>
@@ -52,7 +52,7 @@
 
                     </uc:ClosedSpaceExplosionCalculation>
                 </TabItem.Content>
-            </TabItem>-->
+            </TabItem>
             <!--<TabItem>
                 <TabItem.Header>
                     Справочники

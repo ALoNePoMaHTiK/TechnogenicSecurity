@@ -6,7 +6,11 @@ using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Text.Unicode;
+using System.Windows;
 using System.Windows.Controls.Primitives;
 using TechnogenicSecurity.Models;
 
@@ -249,29 +253,37 @@ namespace TechnogenicSecurity.ViewModels
             string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string path = Path.Combine(dir, "ReportTemplates\\ОтчетВзрывШаблон.docx");
 
-            using (WordprocessingDocument template = WordprocessingDocument.Open(path, true))
+            try
             {
-                string docText = null;
-                using (StreamReader sr = new StreamReader(template.MainDocumentPart.GetStream()))
+                using (WordprocessingDocument template = WordprocessingDocument.Open(path, true))
                 {
-                    docText = sr.ReadToEnd();
-                }
-                foreach (var prop in properties)
-                {
-                    docText = docText.Replace(prop.Key, prop.Value);
-                }
-                string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "ОтчетВзрыв.docx");
-                using (WordprocessingDocument report = WordprocessingDocument.Create(savePath, DocumentFormat.OpenXml.WordprocessingDocumentType.Document))
-                {
-                    foreach (var part in template.Parts)
-                        report.AddPart(part.OpenXmlPart, part.RelationshipId);
-                    using (StreamWriter sw = new StreamWriter(report.MainDocumentPart.GetStream(FileMode.Create)))
+                    string docText = null;
+                    using (StreamReader sr = new StreamReader(template.MainDocumentPart.GetStream()))
                     {
-                        sw.Write(docText);
+                        docText = sr.ReadToEnd();
                     }
+                    foreach (var prop in properties)
+                    {
+                        docText = docText.Replace(prop.Key, prop.Value);
+                    }
+                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "ОтчетВзрыв.docx");
+                    using (WordprocessingDocument report = WordprocessingDocument.Create(savePath, DocumentFormat.OpenXml.WordprocessingDocumentType.Document))
+                    {
+                        foreach (var part in template.Parts)
+                            report.AddPart(part.OpenXmlPart, part.RelationshipId);
+                        using (StreamWriter sw = new StreamWriter(report.MainDocumentPart.GetStream(FileMode.Create)))
+                        {
+                            sw.Write(docText);
+                        }
+                    }
+                    MessageBox.Show($"Отчет успешно сформиирован!\nРасположение : {savePath}", "Отчет успешно сформирован", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                
             }
+            catch(Exception e) 
+            {
+                MessageBox.Show($"Ошибка при формировании отчета!\n{e.Message}", "Уведомление об ошибке", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
 
         private KeyValuePair<string, string> getVariableData(double variable, [CallerArgumentExpression("variable")] string name = "value")
@@ -281,9 +293,9 @@ namespace TechnogenicSecurity.ViewModels
 
         private double getBlastingRadius(double WaveFrontExcessivePressure, double ReducedVaporMass)
         {
-            double minRadius = 100;
-            double minOffset = 100;
-            for (double radius = 1; radius <= 1000; radius += 0.25)
+            double minRadius = 10000;
+            double minOffset = 10000;
+            for (double radius = 0.125; radius <= 1000; radius += 0.125)
             {
                 double p = 81 * Math.Pow(ReducedVaporMass, 1.0 / 3) / radius + 303 * Math.Pow(ReducedVaporMass, 2.0 / 3.0) / Math.Pow(radius, 2) + 505 * ReducedVaporMass / Math.Pow(radius, 3);
                 if (Math.Abs(WaveFrontExcessivePressure - p) < 1)
@@ -295,6 +307,8 @@ namespace TechnogenicSecurity.ViewModels
                     }
                 }
             }
+            if (minRadius == 10000)
+                return double.NaN;
             return minRadius;
         }
     }
