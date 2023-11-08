@@ -11,8 +11,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -21,8 +20,8 @@
         <GroupBox Header="Указываемые характеристики" BorderBrush="ForestGreen" Margin="5">
             <ScrollViewer>
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <GroupBox Header="Характеристики объекта" BorderBrush="Chartreuse">
-                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <GroupBox Header="Характеристики объекта">
+                        <WrapPanel ItemWidth="400" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                             <GroupBox>
                                 <StackPanel>
                                     <Label>
@@ -58,7 +57,7 @@
                         </WrapPanel>
                     </GroupBox>
                     <GroupBox Header="Характеристики вещества" BorderBrush="Chartreuse">
-                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <WrapPanel ItemWidth="400" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                             <GroupBox>
                                 <StackPanel>
                                     <Label>Вещество</Label>
@@ -162,7 +161,7 @@
                         </WrapPanel>
                     </GroupBox>
                     <GroupBox Header="Характеристики персонала" BorderBrush="ForestGreen">
-                        <WrapPanel Orientation="Vertical">
+                        <WrapPanel ItemWidth="400" Orientation="Vertical" HorizontalAlignment="Stretch">
                             <GroupBox>
                                 <StackPanel>
                                     <Label>
@@ -184,9 +183,9 @@
                 </WrapPanel>
             </ScrollViewer>
         </GroupBox>
-        <GroupBox Grid.Column="1" Header="Расчитываемые характеристики" BorderBrush="ForestGreen" Margin="5">
+        <GroupBox Grid.Column="1" Header="Расчитываемые характеристики" BorderBrush="Blue" Margin="5">
             <ScrollViewer>
-                <WrapPanel Orientation="Vertical">
+                <WrapPanel ItemWidth="500" Orientation="Vertical" HorizontalAlignment="Stretch">
                     <GroupBox>
                         <StackPanel>
                             <Label>
@@ -295,7 +294,7 @@
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="Человеческие потери" BorderBrush="Aqua">
+                    <GroupBox Header="Человеческие потери">
                         <StackPanel>
                             <GroupBox>
                                 <StackPanel>
@@ -321,7 +320,7 @@
             </ScrollViewer>
         </GroupBox>
 
-        <Button Grid.Row="1" Grid.ColumnSpan="2" FontSize="50" Margin="5" Command="{Binding CalculateValuesCommand}">Рассчитать значения</Button>
-        <Button Grid.Row="2" Grid.ColumnSpan="2" FontSize="50" Margin="5" Command="{Binding GenerateWordReportCommand}">Получить отчет</Button>
+        <Button Grid.Row="1"  FontSize="24" Margin="5" Command="{Binding CalculateValuesCommand}">Рассчитать значения</Button>
+        <Button Grid.Row="1" Grid.Column="2" FontSize="24" Margin="5" Command="{Binding GenerateReportCommand}">Получить отчет</Button>
     </Grid>
 </UserControl>

@@ -71,11 +71,18 @@ namespace TechnogenicSecurity
 
         public static void saveSubstances(ObservableCollection<Substance> substances)
         {
-            File.WriteAllText(SUBSTANCES_PATH, JsonSerializer.Serialize(substances, new JsonSerializerOptions
+            try
             {
-                Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
-                WriteIndented = true
-            }));
+                File.WriteAllText(SUBSTANCES_PATH, JsonSerializer.Serialize(substances, new JsonSerializerOptions
+                {
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
+                    WriteIndented = true
+                }));
+            }
+            catch(System.Exception e)
+            {
+                MessageBox.Show($"Не удалось сохранить изменения!\n{e.Message}", "Уведомление об ошибке", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

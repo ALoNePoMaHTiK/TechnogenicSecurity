@@ -13,8 +13,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -23,8 +22,8 @@
         <GroupBox Header="Указываемые характеристики" BorderBrush="ForestGreen" Margin="5">
             <ScrollViewer>
                 <WrapPanel Orientation="Vertical" VerticalAlignment="Center">
-                    <GroupBox Header="Характеристики вещества" BorderBrush="Chartreuse">
-                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <GroupBox Header="Характеристики вещества">
+                        <WrapPanel ItemWidth="400" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                             <GroupBox>
                                 <StackPanel>
                                     <Label>Вещество</Label>
@@ -73,8 +72,8 @@
                             </GroupBox>
                         </WrapPanel>
                     </GroupBox>
-                    <GroupBox Header="Размеры помещения" BorderBrush="Chartreuse">
-                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <GroupBox Header="Размеры помещения">
+                        <WrapPanel ItemWidth="400" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                             <GroupBox>
                                 <StackPanel>
                                     <Label>
@@ -101,8 +100,8 @@
                             </GroupBox>
                         </WrapPanel>
                     </GroupBox>
-                    <GroupBox Header="Параметры насосов" BorderBrush="Chartreuse">
-                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <GroupBox Header="Параметры насосов">
+                        <WrapPanel ItemWidth="400" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                             <GroupBox>
                                 <StackPanel>
                                     <Label>
@@ -177,8 +176,8 @@
                             </GroupBox>
                         </WrapPanel>
                     </GroupBox>
-                    <GroupBox Header="Общие параметры" BorderBrush="Chartreuse">
-                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <GroupBox Header="Общие параметры">
+                        <WrapPanel ItemWidth="400" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                             <GroupBox>
                                 <StackPanel>
                                     <Label>
@@ -228,9 +227,9 @@
                 </WrapPanel>
             </ScrollViewer>
         </GroupBox>
-        <GroupBox Grid.Column="1" Header="Расчитываемые характеристики" BorderBrush="ForestGreen" Margin="5">
+        <GroupBox Grid.Column="1" Header="Расчитываемые характеристики" BorderBrush="Blue" Margin="5">
             <ScrollViewer>
-                <WrapPanel Orientation="Vertical">
+                <WrapPanel ItemWidth="500"  HorizontalAlignment="Stretch" Orientation="Vertical">
                     <GroupBox>
                         <StackPanel>
                             <Label>
@@ -354,7 +353,7 @@
                 </WrapPanel>
             </ScrollViewer>
         </GroupBox>
-        <Button Grid.Row="1" Grid.ColumnSpan="2" FontSize="50" Margin="5" Command="{Binding CalculateValuesCommand}">Рассчитать значения</Button>
-        <Button Grid.Row="2" Grid.ColumnSpan="2" FontSize="50" Margin="5" Command="{Binding GenerateWordReportCommand}">Получить отчет</Button>
+        <Button Grid.Row="1"  FontSize="24" Margin="5" Command="{Binding CalculateValuesCommand}">Рассчитать значения</Button>
+        <Button Grid.Row="1" Grid.Column="2" FontSize="24" Margin="5" Command="{Binding GenerateReportCommand}">Получить отчет</Button>
     </Grid>
 </UserControl>

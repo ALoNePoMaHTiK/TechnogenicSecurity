@@ -4,11 +4,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using TechnogenicSecurity.Models;
 
@@ -57,6 +54,9 @@ namespace TechnogenicSecurity.ViewModels
 
         #region Хар-ки резервуара
 
+        /// <summary>
+        ///     Радиус резервуара
+        /// </summary>
         private double _TankRadius;
         public double TankRadius
         {
@@ -64,6 +64,9 @@ namespace TechnogenicSecurity.ViewModels
             set { _TankRadius = value; OnPropertyChanged(); }
         }
 
+        /// <summary>
+        ///     Высота резервуара
+        /// </summary>
         private double _TankHeight;
         public double TankHeight
         {
@@ -75,13 +78,15 @@ namespace TechnogenicSecurity.ViewModels
 
         #region Общие характеристики
 
+        /// <summary>
+        ///     Высота обваловки
+        /// </summary>
         private double _ShellHeight;
         public double ShellHeight
         {
             get { return _ShellHeight; }
             set { _ShellHeight = value; OnPropertyChanged(); }
         }
-
         private double _FluxDensity;
         public double FluxDensity
         {
@@ -260,12 +265,12 @@ namespace TechnogenicSecurity.ViewModels
         #region Константы
 
         double[] EmissivityAngles = { 1, 0.34, 0.18, 0.1, 0.07, 0.05, 0.04, 0.03, 0.02, 0.01, 0.01, 0.01 };
-        double V0 = 22.4;
-        double TP = 22.4;
-        double g = 9.8;
-        double AIR_DENSITY = 1.29;
-        double u = 5; // характерное время обнаружения пожара
-        double C = 0.00000125; //коэффициент пропорциональности
+        const double V0 = 22.4;
+        const double TP = 22.4;
+        const double g = 9.8;
+        const double AIR_DENSITY = 1.29;
+        const double u = 5; // характерное время обнаружения пожара
+        const double C = 0.00000125; //коэффициент пропорциональности
 
         #endregion
 

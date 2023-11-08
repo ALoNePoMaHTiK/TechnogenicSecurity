@@ -19,7 +19,7 @@
     "GasExplosionEnergy": 16600,
     "GasAirMixExplosionEnergy": 2370,
     "Density": 682.8,
-    "HiddenVaporizationHeat": 100,
+    "HiddenVaporizationHeat": 0,
     "BoilingTemperature": -34,
     "StoichiometricGasConcentration": 19.72
   },
@@ -31,9 +31,21 @@
     "GasExplosionEnergy": 28600,
     "GasAirMixExplosionEnergy": 3112,
     "Density": 0.87,
-    "HiddenVaporizationHeat": 100,
+    "HiddenVaporizationHeat": 0,
     "BoilingTemperature": 56,
     "StoichiometricGasConcentration": 4.99
+  },
+  {
+    "SubstanceName": "Ацетилен",
+    "MolarMass": 26,
+    "LCLS": 0.021,
+    "UCLS": 0.86,
+    "GasExplosionEnergy": 48300,
+    "GasAirMixExplosionEnergy": 3387,
+    "Density": 1.1,
+    "HiddenVaporizationHeat": 0,
+    "BoilingTemperature": 350,
+    "StoichiometricGasConcentration": 7.75
   },
   {
     "SubstanceName": "Мазут",

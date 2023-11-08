@@ -6,12 +6,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Text.RegularExpressions;
-using System.Text.Unicode;
 using System.Windows;
-using System.Windows.Controls.Primitives;
 using TechnogenicSecurity.Models;
 
 namespace TechnogenicSecurity.ViewModels

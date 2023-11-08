@@ -22,10 +22,6 @@ namespace TechnogenicSecurity.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-
-        //TODO Добавить генераицю отчета с отображением всех введенных значений
-        // Добавить оповещение об ошибках при генерации отчетов
-        // Запихнуть все в try catch и отображать MessageBox.Show()
         public ClosedSpaceExplosionCalculationViewModel()
         {
             Coefs = CatalogAdministrator.getAirSpeedAndTemperatureFlowCoefficients();

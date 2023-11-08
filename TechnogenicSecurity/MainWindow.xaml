@@ -8,8 +8,9 @@
         mc:Ignorable="d"
         xmlns:vm ="clr-namespace:TechnogenicSecurity.ViewModels" 
         SizeToContent="Width"
+        ResizeMode="NoResize"
         Width="Auto"
-        Height="800"
+        Height="600"
         WindowStartupLocation="CenterScreen"
         Title="Расчет пожара пролива">
     <Window.DataContext>
@@ -53,7 +54,7 @@
                     </uc:ClosedSpaceExplosionCalculation>
                 </TabItem.Content>
             </TabItem>
-            <!--<TabItem>
+            <TabItem>
                 <TabItem.Header>
                     Справочники
                 </TabItem.Header>
@@ -62,7 +63,7 @@
 
                     </uc:CatalogsAdministration>
                 </TabItem.Content>
-            </TabItem>-->
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

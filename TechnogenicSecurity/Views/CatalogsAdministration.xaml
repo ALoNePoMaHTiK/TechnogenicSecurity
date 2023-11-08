@@ -4,69 +4,91 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm ="clr-namespace:TechnogenicSecurity.ViewModels" 
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" >
     <UserControl.DataContext>
         <vm:CatalogAdministrationViewModel/>
     </UserControl.DataContext>
-    <StackPanel>
-        <GroupBox>
-            <StackPanel>
-                <Label>Вещество</Label>
-                <ComboBox ItemsSource="{Binding Substances}" DisplayMemberPath="SubstanceName" SelectedItem="{Binding Substance}"></ComboBox>
-            </StackPanel>
-        </GroupBox>
-        <StackPanel>
-            <StackPanel>
-                <GroupBox>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl Margin="10">
+            <TabItem>
+                <TabItem.Header>
+                    Расчет пожара пролива
+                </TabItem.Header>
+                <TabItem.Content>
                     <StackPanel>
-                        <Label>
-                            <TextBlock>Наименование</TextBlock>
-                        </Label>
-                        <TextBox IsEnabled="False" Text="{Binding Substance.SubstanceName}"></TextBox>
+                        <WrapPanel ItemWidth="600" HorizontalAlignment="Stretch" Orientation="Vertical">
+                            <GroupBox>
+                                <GroupBox.Header>
+                                    <TextBlock>Вещество</TextBlock>
+                                </GroupBox.Header>
+                                <ComboBox ItemsSource="{Binding Substances}" DisplayMemberPath="SubstanceName" SelectedItem="{Binding Substance}"></ComboBox>
+                            </GroupBox>
+                            <GroupBox>
+                                <GroupBox.Header>
+                                    <TextBlock>Наименование</TextBlock>
+                                </GroupBox.Header>
+                                <TextBox Text="{Binding Substance.SubstanceName}"></TextBox>
+                            </GroupBox>
+                            <GroupBox>
+                                <GroupBox.Header>
+                                    <TextBlock>Молярная масса, кг/кмоль</TextBlock>
+                                </GroupBox.Header>
+                                <TextBox Text="{Binding Substance.MolarMass}"></TextBox>
+                            </GroupBox>
+                            <GroupBox>
+                                <GroupBox.Header>
+                                    <TextBlock>Плотность вещества, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                                </GroupBox.Header>
+                                <TextBox Text="{Binding Substance.Density}"></TextBox>
+                            </GroupBox>
+                            <GroupBox>
+                                <GroupBox.Header>
+                                    <TextBlock>Температура кипения, К</TextBlock>
+                                </GroupBox.Header>
+                                <TextBox Text="{Binding Substance.BoilingTemperature}"></TextBox>
+                            </GroupBox>
+                            <GroupBox>
+                                <GroupBox.Header>
+                                    <TextBlock>НКПР, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                                </GroupBox.Header>
+                                <TextBox Text="{Binding Substance.LCLS}" ToolTip="Нижний концентрационный предел распространения пламени"></TextBox>
+                            </GroupBox>
+                            <GroupBox>
+                                <GroupBox.Header>
+                                    <TextBlock>ВКПР, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                                </GroupBox.Header>
+                                <TextBox Text="{Binding Substance.UCLS}" ToolTip="Верхний концентрационный предел распространения пламени"></TextBox>
+                            </GroupBox>
+                            <GroupBox>
+                                <GroupBox.Header>
+                                    <TextBlock>Скрытая теплота испарения, кДж/кг</TextBlock>
+                                </GroupBox.Header>
+                                <TextBox Text="{Binding Substance.HiddenVaporizationHeat}"></TextBox>
+                            </GroupBox>
+                        </WrapPanel>
+                        <WrapPanel ItemWidth="300" HorizontalAlignment="Stretch">
+                            <Button Command="{Binding AddNewSubstanceCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="./Images/Add.png" Width="25" Height="25"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="16" Text="Добавить"/>
+                                </StackPanel>
+                            </Button>
+                            <Button Command="{Binding SaveSubstancesCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="./Images/Save.png" Width="25" Height="25"/>
+                                    <TextBlock VerticalAlignment="Center" FontSize="16" Text="Сохранить"/>
+                                </StackPanel>
+                            </Button>
+                        </WrapPanel>
                     </StackPanel>
-                </GroupBox>
-                <GroupBox>
-                    <StackPanel>
-                        <Label>
-                            <TextBlock>Молярная масса, кг/кмоль</TextBlock>
-                        </Label>
-                        <TextBox IsEnabled="False" Text="{Binding Substance.MolarMass}"></TextBox>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox>
-                    <StackPanel>
-                        <Label>
-                            <TextBlock>Плотность вещества, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
-                        </Label>
-                        <TextBox IsEnabled="False" Text="{Binding Substance.Density}"></TextBox>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox>
-                    <StackPanel>
-                        <Label>
-                            <TextBlock>Температура кипения, К</TextBlock>
-                        </Label>
-                        <TextBox IsEnabled="False" Text="{Binding Substance.BoilingTemperature}"></TextBox>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox>
-                    <StackPanel>
-                        <Label>
-                            <TextBlock>НКПР, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
-                        </Label>
-                        <TextBox IsEnabled="False" Text="{Binding Substance.LCLS}" ToolTip="Нижний концентрационный предел распространения пламени"></TextBox>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox>
-                    <StackPanel>
-                        <Label>
-                            <TextBlock>ВКПР, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
-                        </Label>
-                        <TextBox IsEnabled="False" Text="{Binding Substance.UCLS}" ToolTip="Верхний концентрационный предел распространения пламени"></TextBox>
-                    </StackPanel>
-                </GroupBox>
-            </StackPanel>
-        </StackPanel>
-    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </UserControl>

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TechnogenicSecurity.Models
+﻿namespace TechnogenicSecurity.Models
 {
     public class Substance
     {
@@ -15,8 +9,8 @@ namespace TechnogenicSecurity.Models
         public double GasExplosionEnergy { get; set; }         //энергия взрыва газа смеси
         public double GasAirMixExplosionEnergy { get; set; }   //энергия взрыва газо-воздушной смеси
         public double Density { get; set; } //плотность стехиометрической смеси
-        public double HiddenVaporizationHeat { get; set; }
-        public double BoilingTemperature { get; set; }
+        public double HiddenVaporizationHeat { get; set; }  //Скрытая теплота испарения
+        public double BoilingTemperature { get; set; }  //Температура кипения
         public double StoichiometricGasConcentration { get; set; }
     }
 }

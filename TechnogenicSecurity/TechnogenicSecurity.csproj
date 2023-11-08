@@ -12,11 +12,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\Images\Add.png" />
+    <None Remove="Views\Images\Save.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="fire_115156.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\Images\Add.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Images\Save.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

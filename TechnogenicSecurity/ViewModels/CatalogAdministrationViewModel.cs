@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TechnogenicSecurity.Models;
 
 namespace TechnogenicSecurity.ViewModels
@@ -36,6 +37,41 @@ namespace TechnogenicSecurity.ViewModels
         {
             get { return _Substance; }
             set { _Substance = value; OnPropertyChanged(); }
+        }
+
+        public DelegateCommand AddNewSubstanceCommand
+        {
+            get
+            {
+                return new DelegateCommand((obj) =>
+                {
+                    AddNewSubstance();
+                });
+            }
+        }
+
+        public DelegateCommand SaveSubstancesCommand
+        {
+            get
+            {
+                return new DelegateCommand((obj) =>
+                {
+                    SaveSubstances();
+                });
+            }
+        }
+
+        private void AddNewSubstance()
+        {
+            Substance newSubstance = new Substance();
+            Substances.Add(newSubstance);
+            Substance = newSubstance;
+        }
+
+        private void SaveSubstances()
+        {
+            CatalogAdministrator.saveSubstances(Substances);
+            MessageBox.Show($"Изменения успешно сохранены!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
