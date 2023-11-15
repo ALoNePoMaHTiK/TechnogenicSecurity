@@ -56,6 +56,16 @@
             </TabItem>
             <TabItem>
                 <TabItem.Header>
+                    Расчет тротилового эквивалента
+                </TabItem.Header>
+                <TabItem.Content>
+                    <uc:TNTEquivalentCalculation DataContext="{Binding TNTEquivalentCalculationViewModel}">
+
+                    </uc:TNTEquivalentCalculation>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
                     Справочники
                 </TabItem.Header>
                 <TabItem.Content>

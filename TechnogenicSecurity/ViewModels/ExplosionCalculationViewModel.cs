@@ -28,13 +28,13 @@ namespace TechnogenicSecurity.ViewModels
             ObjectType = ObjectTypes[0];
             Substance = Substances[0];
 
-            SubstanceVolume = 500;
-            EvaporationArea = 400;
-            CoolingTemperature = 300;
-            FillingLevel = 0.8;
+            //SubstanceVolume = 500;
+            //EvaporationArea = 400;
+            //CoolingTemperature = 300;
+            //FillingLevel = 0.8;
 
-            PeopleCount = 10;
-            StaffDensity = 900;
+            //PeopleCount = 10;
+            //StaffDensity = 900;
             Calculate();
         }
 

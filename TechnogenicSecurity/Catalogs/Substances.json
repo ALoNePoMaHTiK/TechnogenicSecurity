@@ -1,12 +1,12 @@
 [
   {
     "SubstanceName": "Бензин",
-    "MolarMass": 94,
-    "LCLS": 0.04,
-    "UCLS": 0.22,
+    "MolarMass": 114,
+    "LCLS": 0.76,
+    "UCLS": 6,
     "GasExplosionEnergy": 46200,
     "GasAirMixExplosionEnergy": 2973,
-    "Density": 740,
+    "Density": 714.82,
     "HiddenVaporizationHeat": 287.3,
     "BoilingTemperature": 413,
     "StoichiometricGasConcentration": 2.1
@@ -49,14 +49,50 @@
   },
   {
     "SubstanceName": "Мазут",
-    "MolarMass": 300,
-    "LCLS": 0.1,
-    "UCLS": 0.1,
+    "MolarMass": 700,
+    "LCLS": 1.4,
+    "UCLS": 8,
     "GasExplosionEnergy": 28000,
     "GasAirMixExplosionEnergy": 3000,
-    "Density": 920,
+    "Density": 977.5,
     "HiddenVaporizationHeat": 240.3,
-    "BoilingTemperature": 350,
+    "BoilingTemperature": 628,
     "StoichiometricGasConcentration": 100
+  },
+  {
+    "SubstanceName": "Нефть",
+    "MolarMass": 260,
+    "LCLS": 0.76,
+    "UCLS": 6,
+    "GasExplosionEnergy": 46200,
+    "GasAirMixExplosionEnergy": 2973,
+    "Density": 885,
+    "HiddenVaporizationHeat": 210,
+    "BoilingTemperature": 393,
+    "StoichiometricGasConcentration": 2.1
+  },
+  {
+    "SubstanceName": "Газойль",
+    "MolarMass": 350,
+    "LCLS": 0.6,
+    "UCLS": 6,
+    "GasExplosionEnergy": 46200,
+    "GasAirMixExplosionEnergy": 2973,
+    "Density": 907.5,
+    "HiddenVaporizationHeat": 210,
+    "BoilingTemperature": 733,
+    "StoichiometricGasConcentration": 2.1
+  },
+  {
+    "SubstanceName": "ВГО",
+    "MolarMass": 204,
+    "LCLS": 0.6,
+    "UCLS": 6,
+    "GasExplosionEnergy": 46200,
+    "GasAirMixExplosionEnergy": 2973,
+    "Density": 830,
+    "HiddenVaporizationHeat": 287.3,
+    "BoilingTemperature": 623,
+    "StoichiometricGasConcentration": 2.1
   }
 ]

@@ -28,29 +28,29 @@ namespace TechnogenicSecurity.ViewModels
             Substances = CatalogAdministrator.getSubstances();
             Substance = Substances[0];
 
-            Substance.MolarMass = 240;
-            Substance.BoilingTemperature = 57;
-            Substance.HiddenVaporizationHeat = 345400;
-            Substance.Density = 860;
+            //Substance.MolarMass = 240;
+            //Substance.BoilingTemperature = 57;
+            //Substance.HiddenVaporizationHeat = 345400;
+            //Substance.Density = 860;
 
-            RoomLength = 54;
-            RoomWidth = 12;
-            RoomHeight = 8.5;
+            //RoomLength = 54;
+            //RoomWidth = 12;
+            //RoomHeight = 8.5;
 
-            PumpCount = 4;
-            PumpProductivity = 2.78;
-            PumpFillVolume = 25.76;
-            PumpArea = 12.88;
-            SupplyPipelineLength = 3;
-            OutletPipelineLength = 4.4;
-            PipelineDiameter = 1.02;
-            EmergencyVentilationRate = 9;
-            IndoorAirSpeed = 1;
-            IndoorTemperature = 20;
-            SubstanceTemperature = 22.4;
-            AutoShutdownTime = 120;
-            RoomFreeVolumePersent = 0.8;
-            Betta = 26.5;
+            //PumpCount = 4;
+            //PumpProductivity = 2.78;
+            //PumpFillVolume = 25.76;
+            //PumpArea = 12.88;
+            //SupplyPipelineLength = 3;
+            //OutletPipelineLength = 4.4;
+            //PipelineDiameter = 1.02;
+            //EmergencyVentilationRate = 9;
+            //IndoorAirSpeed = 1;
+            //IndoorTemperature = 20;
+            //SubstanceTemperature = 22.4;
+            //AutoShutdownTime = 120;
+            //RoomFreeVolumePersent = 0.8;
+            //Betta = 26.5;
 
             Calculate();
         }

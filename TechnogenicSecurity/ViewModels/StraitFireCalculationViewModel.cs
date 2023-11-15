@@ -21,16 +21,16 @@ namespace TechnogenicSecurity.ViewModels
         public StraitFireCalculationViewModel()
         {
             Substances = CatalogAdministrator.getSubstances();
-            Substance = Substances[3];
+            Substance = Substances[0];
 
-            TankRadius = 28;
-            TankHeight = 30;
+            //TankRadius = 28;
+            //TankHeight = 30;
 
-            ShellHeight = 9;
-            FluxDensity = 60;
-            WindSpeed = 5;
-            LowerHeatingValue = 40000;
-            TankFillLevel = 0.8;
+            //ShellHeight = 9;
+            //FluxDensity = 60;
+            //WindSpeed = 5;
+            //LowerHeatingValue = 40000;
+            //TankFillLevel = 0.8;
             Calculate();
         }
 

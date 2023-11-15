@@ -18,6 +18,7 @@ namespace TechnogenicSecurity.ViewModels
         public StraitFireCalculationViewModel straitFireCalculationViewModel { get; set; }
         public CatalogAdministrationViewModel catalogAdministrationViewModel { get; set; }
         public ClosedSpaceExplosionCalculationViewModel closedSpaceExplosionCalculationViewModel { get; set; }
+        public TNTEquivalentCalculationViewModel TNTEquivalentCalculationViewModel { get; set; }
 
         public MainViewModel() 
         {
@@ -25,6 +26,7 @@ namespace TechnogenicSecurity.ViewModels
             straitFireCalculationViewModel = new StraitFireCalculationViewModel();
             catalogAdministrationViewModel = new CatalogAdministrationViewModel();
             closedSpaceExplosionCalculationViewModel = new ClosedSpaceExplosionCalculationViewModel();
+            TNTEquivalentCalculationViewModel = new TNTEquivalentCalculationViewModel();
         }  
     }
 }

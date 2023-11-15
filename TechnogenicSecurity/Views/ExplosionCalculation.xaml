@@ -73,30 +73,6 @@
                             <GroupBox>
                                 <StackPanel>
                                     <Label>
-                                        <TextBlock>Объем вещества, м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
-                                    </Label>
-                                    <TextBox Text="{Binding SubstanceVolume}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Площадь испарения, м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
-                                    </Label>
-                                    <TextBox Text="{Binding EvaporationArea}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
-                                        <TextBlock>Температура окружающей среды, К</TextBlock>
-                                    </Label>
-                                    <TextBox Text="{Binding CoolingTemperature}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
                                         <TextBlock>Плотность вещества, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
                                     </Label>
                                     <TextBox IsEnabled="True" Text="{Binding Substance.Density}"></TextBox>
@@ -129,14 +105,6 @@
                             <GroupBox>
                                 <StackPanel>
                                     <Label>
-                                        <TextBlock>Степень заполнения, [0..1]</TextBlock>
-                                    </Label>
-                                    <TextBox Text="{Binding FillingLevel}"></TextBox>
-                                </StackPanel>
-                            </GroupBox>
-                            <GroupBox>
-                                <StackPanel>
-                                    <Label>
                                         <TextBlock>НКПР, кг/м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
                                     </Label>
                                     <TextBox IsEnabled="True" Text="{Binding Substance.LCLS}" ToolTip="Нижний концентрационный предел распространения пламени"></TextBox>
@@ -156,6 +124,38 @@
                                         <TextBlock>Cстх, об. %</TextBlock>
                                     </Label>
                                     <TextBox IsEnabled="True" Text="{Binding Substance.StoichiometricGasConcentration}" ToolTip="Cтехиометрическая концентрация газа в смеси"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Объем вещества, м<TextBlock BaselineOffset="15" Text="3"/></TextBlock>
+                                    </Label>
+                                    <TextBox Text="{Binding SubstanceVolume}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Площадь испарения, м<TextBlock BaselineOffset="15" Text="2"/></TextBlock>
+                                    </Label>
+                                    <TextBox Text="{Binding EvaporationArea}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Температура окружающей среды, К</TextBlock>
+                                    </Label>
+                                    <TextBox Text="{Binding CoolingTemperature}"></TextBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox>
+                                <StackPanel>
+                                    <Label>
+                                        <TextBlock>Степень заполнения, [0..1]</TextBlock>
+                                    </Label>
+                                    <TextBox Text="{Binding FillingLevel}"></TextBox>
                                 </StackPanel>
                             </GroupBox>
                         </WrapPanel>
