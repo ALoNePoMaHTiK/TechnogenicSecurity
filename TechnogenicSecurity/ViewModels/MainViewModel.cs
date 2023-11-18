@@ -19,6 +19,7 @@ namespace TechnogenicSecurity.ViewModels
         public CatalogAdministrationViewModel catalogAdministrationViewModel { get; set; }
         public ClosedSpaceExplosionCalculationViewModel closedSpaceExplosionCalculationViewModel { get; set; }
         public TNTEquivalentCalculationViewModel TNTEquivalentCalculationViewModel { get; set; }
+        public PlanEditViewModel planEditViewModel { get; set; }
 
         public MainViewModel() 
         {
@@ -27,6 +28,7 @@ namespace TechnogenicSecurity.ViewModels
             catalogAdministrationViewModel = new CatalogAdministrationViewModel();
             closedSpaceExplosionCalculationViewModel = new ClosedSpaceExplosionCalculationViewModel();
             TNTEquivalentCalculationViewModel = new TNTEquivalentCalculationViewModel();
+            planEditViewModel = new PlanEditViewModel();
         }  
     }
 }

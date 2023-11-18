@@ -9,7 +9,7 @@
         xmlns:vm ="clr-namespace:TechnogenicSecurity.ViewModels" 
         SizeToContent="Width"
         ResizeMode="NoResize"
-        Width="Auto"
+        Width="1000"
         Height="600"
         WindowStartupLocation="CenterScreen"
         Title="Расчет пожара пролива">
@@ -72,6 +72,16 @@
                     <uc:CatalogsAdministration DataContext="{Binding catalogAdministrationViewModel}">
 
                     </uc:CatalogsAdministration>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    План
+                </TabItem.Header>
+                <TabItem.Content>
+                    <uc:PlanEditView DataContext="{Binding planEditViewModel}">
+
+                    </uc:PlanEditView>
                 </TabItem.Content>
             </TabItem>
         </TabControl>

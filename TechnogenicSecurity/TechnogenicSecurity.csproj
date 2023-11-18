@@ -13,8 +13,8 @@
 
   <ItemGroup>
     <None Remove="Views\Images\Add.png" />
+    <None Remove="Views\Images\placeholder.png" />
     <None Remove="Views\Images\Save.png" />
-    <None Remove="Views\Images\test.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,17 +23,18 @@
 
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Views\Images\Add.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Views\Images\Save.png">
+    <Resource Include="Views\Images\placeholder.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Views\Images\test.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    <Resource Include="Views\Images\Save.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 
