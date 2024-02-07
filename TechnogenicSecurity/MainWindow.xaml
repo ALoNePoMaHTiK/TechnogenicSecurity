@@ -66,6 +66,16 @@
             </TabItem>
             <TabItem>
                 <TabItem.Header>
+                    Расчет энергетического потенциала
+                </TabItem.Header>
+                <TabItem.Content>
+                    <uc:EnergyPotential DataContext="{Binding energyPotentialViewModel}">
+
+                    </uc:EnergyPotential>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
                     Справочники
                 </TabItem.Header>
                 <TabItem.Content>

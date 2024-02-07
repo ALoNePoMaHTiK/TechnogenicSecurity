@@ -10,25 +10,46 @@
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MaxWidth="1000" Width="*"/>
+            <ColumnDefinition MaxWidth="900" Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
-            <Button Height="50" Command="{Binding OpenDialogCommand}">Открыть план</Button>
-            <StackPanel Orientation="Horizontal">
-                <Button HorizontalAlignment="Stretch" Command="{Binding UndoCircleCommand}">Отменить шаг</Button>
-                <Button HorizontalAlignment="Stretch" Height="50" Command="{Binding SavePlanCommand}">Сохранить</Button>
-            </StackPanel>
-        </StackPanel>
-        <ScrollViewer HorizontalScrollBarVisibility="Visible" Grid.Column="0" Grid.Row="1">
-            <Image x:Name="Plan" Source="{Binding BitmapImageSource}" Stretch="UniformToFill">
+        
+        <ScrollViewer HorizontalScrollBarVisibility="Visible">
+            <Image x:Name="Plan" Source="{Binding BitmapImageSource}" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding Gesture="LeftClick" Command="{Binding AddPointCommand}" CommandParameter="{Binding ElementName=Plan}"/>
                 </Image.InputBindings>
             </Image>
         </ScrollViewer>
+        <StackPanel Grid.Row="1">
+            <WrapPanel Orientation="Horizontal" ItemWidth="300">
+                <GroupBox Header="Толщина окружности">
+                    <StackPanel Orientation="Horizontal">
+                        <Slider Maximum="15" IsSnapToTickEnabled="True" TickFrequency="1" Minimum="5" Value="{Binding PenWidth}" Width="250"/>
+                        <TextBox Text="{Binding PenWidth, UpdateSourceTrigger=PropertyChanged}" Width="35"/>
+                    </StackPanel>
+                </GroupBox>
+                <ComboBox ItemsSource="{Binding Colors}" SelectedItem="{Binding CurrentColor}" VerticalContentAlignment="Center">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="2 2 5 2"/>
+                                <TextBlock Text="{Binding Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <ComboBox ItemsSource="{Binding DashStyles}" SelectedItem="{Binding CurrentDashStyle}" DisplayMemberPath="Name" VerticalContentAlignment="Center"/>
+            </WrapPanel>
+            <Button Height="50" Command="{Binding OpenDialogCommand}">Открыть план</Button>
+            <WrapPanel Orientation="Horizontal" ItemWidth="450">
+                <Button Command="{Binding UndoCircleCommand}">Отменить шаг</Button>
+                <Button Height="50" Command="{Binding SavePlanCommand}">Сохранить</Button>
+            </WrapPanel>
+        </StackPanel>
+        
     </Grid>
 </UserControl>

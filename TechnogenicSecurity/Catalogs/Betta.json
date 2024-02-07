@@ -1,0 +1,57 @@
+[
+  {
+    "Adiabat": 1.1,
+    "Values": [
+      {
+        "MinPressure": 0.07,
+        "MaxPressure": 0.5,
+        "Betta": 1.6
+      },
+      {
+        "MinPressure": 0.5,
+        "MaxPressure": 1.0,
+        "Betta": 1.95
+      },
+      {
+        "MinPressure": 1.0,
+        "MaxPressure": 5.0,
+        "Betta": 2.95
+      },
+      {
+        "MinPressure": 5.0,
+        "MaxPressure": 10.0,
+        "Betta": 3.38
+      },
+      {
+        "MinPressure": 10.0,
+        "MaxPressure": 20.0,
+        "Betta": 3.08
+      },
+      {
+        "MinPressure": 20.0,
+        "MaxPressure": 30.0,
+        "Betta": 4.02
+      },
+      {
+        "MinPressure": 30.0,
+        "MaxPressure": 40.0,
+        "Betta": 4.16
+      },
+      {
+        "MinPressure": 40.0,
+        "MaxPressure": 50.0,
+        "Betta": 4.28
+      },
+      {
+        "MinPressure": 50.0,
+        "MaxPressure": 75.0,
+        "Betta": 4.46
+      },
+      {
+        "MinPressure": 75.0,
+        "MaxPressure": 100.0,
+        "Betta": 4.63
+      }
+    ]
+  }
+]
