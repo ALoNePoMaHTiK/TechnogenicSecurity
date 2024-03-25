@@ -33,9 +33,9 @@ namespace TechnogenicSecurity.ViewModels
             {
                 file.Delete();
             }
-            CirclesStack = new Stack<PlanCircle>();
             BitmapImageSource = new BitmapImage();
             PenWidth = 5;
+            Scale = 1;
 
             
             DashStyles = new ObservableCollection<PenDashStyle>();
@@ -53,7 +53,12 @@ namespace TechnogenicSecurity.ViewModels
             CurrentColor = Colors[0];
         }
 
-        private Stack<PlanCircle> CirclesStack;
+        private PlanCircle _CircleCenter;
+        public PlanCircle CircleCenter
+        {
+            get { return _CircleCenter; }
+            set { _CircleCenter = value; OnPropertyChanged(); }
+        }
 
         private string _PlanSourcePath;
         public string PlanSourcePath
@@ -120,6 +125,7 @@ namespace TechnogenicSecurity.ViewModels
                 return new DelegateCommand((obj) =>
                 {
                     AddPoint(obj);
+                    ClearImage();
                     DrawCircle();
                 });
             }
@@ -132,17 +138,6 @@ namespace TechnogenicSecurity.ViewModels
                 return new DelegateCommand((obj) =>
                 {
                     OpenDialog();
-                });
-            }
-        }
-
-        public DelegateCommand UndoCircleCommand
-        {
-            get
-            {
-                return new DelegateCommand((obj) =>
-                {
-                    UndoCircle();
                 });
             }
         }
@@ -173,7 +168,7 @@ namespace TechnogenicSecurity.ViewModels
         {
             string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            string path = Path.Combine(dir, $"Plans\\Result_{CirclesStack.Count}.png");
+            string path = Path.Combine(dir, $"Plans\\Result.png");
 
             CurrentBitmap.Save(path);
             BitmapImage newBitmap = new BitmapImage();
@@ -186,49 +181,21 @@ namespace TechnogenicSecurity.ViewModels
             stream.Close();
             stream.Dispose();
             BitmapImageSource = newBitmap;
-            File.Delete(Path.Combine(dir, $"Plans\\Result_{CirclesStack.Count - 1}.png"));
-            File.Delete(Path.Combine(dir, $"Plans\\Result_{CirclesStack.Count + 1}.png"));
+            File.Delete(Path.Combine(dir, $"Plans\\Result.png"));
         }
 
         private void DrawCircle()
         {
             Graphics graphics = Graphics.FromImage(CurrentBitmap);
-            PlanCircle circle = CirclesStack.Pop();
+            PlanCircle circle = CircleCenter;
             Pen pen = new Pen(circle.Color, circle.Width);
             pen.DashStyle = CurrentDashStyle.DashStyle;
             float diameter = 100*Scale;
 
             graphics.DrawEllipse(pen, (float)(circle.Center.X - diameter / 2), (float)(circle.Center.Y - diameter / 2),
                                           diameter, diameter);
-            CirclesStack.Push(circle);
             SavePlan();
             graphics.Dispose();
-        }
-
-        private void DrawCircles()
-        {
-            Graphics graphics = Graphics.FromImage(CurrentBitmap);
-            
-            float diameter = 100 * Scale;
-            foreach (PlanCircle circle in CirclesStack)
-            {
-                Pen pen = new Pen(circle.Color, circle.Width);
-                pen.DashStyle = circle.DashStyle;
-                graphics.DrawEllipse(pen, (float)(circle.Center.X - diameter / 2), (float)(circle.Center.Y - diameter / 2),
-                                          diameter, diameter);
-            }
-            SavePlan();
-            graphics.Dispose();
-        }
-
-        private void UndoCircle()
-        {
-            if (CirclesStack.Count > 0)
-            {
-                CirclesStack.Pop();
-                CurrentBitmap = SourceBitmap.Clone(new Rectangle(0, 0, SourceBitmap.Width, SourceBitmap.Height), SourceBitmap.PixelFormat);
-                DrawCircles();
-            }
         }
 
         private void ClearImage()
@@ -271,7 +238,7 @@ namespace TechnogenicSecurity.ViewModels
 
         private void AddPoint(object target)
         {
-            CirclesStack.Push(new PlanCircle { Center= Mouse.GetPosition((IInputElement)target) ,Color=CurrentColor,Width=(float)PenWidth, DashStyle= CurrentDashStyle.DashStyle});
+            CircleCenter = new PlanCircle { Center = Mouse.GetPosition((IInputElement)target), Color = CurrentColor, Width = (float)PenWidth, DashStyle = CurrentDashStyle.DashStyle };
         }
         private Bitmap GetBitmap(string fileName)
         {
