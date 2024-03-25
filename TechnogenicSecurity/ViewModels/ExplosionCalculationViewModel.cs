@@ -14,14 +14,13 @@ namespace TechnogenicSecurity.ViewModels
     public class ExplosionCalculationViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string name = "")
+        private void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         
         public ExplosionCalculationViewModel()
         {
-            Substances = CatalogAdministrator.getSubstances();
             ObjectTypes = CatalogAdministrator.getNeigborObjects();
             StoringMethods = CatalogAdministrator.getStoringMethods();
             StoringMethod = StoringMethods[0];
@@ -40,12 +39,9 @@ namespace TechnogenicSecurity.ViewModels
 
         #region Справочники
 
-        private ObservableCollection<Substance> _Substances;
-
         public ObservableCollection<Substance> Substances
         {
-            get { return _Substances; }
-            set { _Substances = value; }
+            get { return CatalogAdministrator.getSubstances(); }
         }
 
         private ObservableCollection<ObjectType> _ObjectTypes;

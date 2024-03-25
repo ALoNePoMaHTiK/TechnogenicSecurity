@@ -53,5 +53,171 @@
         "Betta": 4.63
       }
     ]
+  },
+  {
+    "Adiabat": 1.2,
+    "Values": [
+      {
+        "MinPressure": 0.07,
+        "MaxPressure": 0.5,
+        "Betta": 1.4
+      },
+      {
+        "MinPressure": 0.5,
+        "MaxPressure": 1.0,
+        "Betta": 1.53
+      },
+      {
+        "MinPressure": 1.0,
+        "MaxPressure": 5.0,
+        "Betta": 2.13
+      },
+      {
+        "MinPressure": 5.0,
+        "MaxPressure": 10.0,
+        "Betta": 2.68
+      },
+      {
+        "MinPressure": 10.0,
+        "MaxPressure": 20.0,
+        "Betta": 2.94
+      },
+      {
+        "MinPressure": 20.0,
+        "MaxPressure": 30.0,
+        "Betta": 3.07
+      },
+      {
+        "MinPressure": 30.0,
+        "MaxPressure": 40.0,
+        "Betta": 3.16
+      },
+      {
+        "MinPressure": 40.0,
+        "MaxPressure": 50.0,
+        "Betta": 3.23
+      },
+      {
+        "MinPressure": 50.0,
+        "MaxPressure": 75.0,
+        "Betta": 3.36
+      },
+      {
+        "MinPressure": 75.0,
+        "MaxPressure": 100.0,
+        "Betta": 3.42
+      }
+    ]
+  },
+  {
+    "Adiabat": 1.3,
+    "Values": [
+      {
+        "MinPressure": 0.07,
+        "MaxPressure": 0.5,
+        "Betta": 1.21
+      },
+      {
+        "MinPressure": 0.5,
+        "MaxPressure": 1.0,
+        "Betta": 1.42
+      },
+      {
+        "MinPressure": 1.0,
+        "MaxPressure": 5.0,
+        "Betta": 1.97
+      },
+      {
+        "MinPressure": 5.0,
+        "MaxPressure": 10.0,
+        "Betta": 2.18
+      },
+      {
+        "MinPressure": 10.0,
+        "MaxPressure": 20.0,
+        "Betta": 2.36
+      },
+      {
+        "MinPressure": 20.0,
+        "MaxPressure": 30.0,
+        "Betta": 2.44
+      },
+      {
+        "MinPressure": 30.0,
+        "MaxPressure": 40.0,
+        "Betta": 2.5
+      },
+      {
+        "MinPressure": 40.0,
+        "MaxPressure": 50.0,
+        "Betta": 2.54
+      },
+      {
+        "MinPressure": 50.0,
+        "MaxPressure": 75.0,
+        "Betta": 2.62
+      },
+      {
+        "MinPressure": 75.0,
+        "MaxPressure": 100.0,
+        "Betta": 2.65
+      }
+    ]
+  },
+
+  {
+    "Adiabat": 1.4,
+    "Values": [
+      {
+        "MinPressure": 0.07,
+        "MaxPressure": 0.5,
+        "Betta": 1.08
+      },
+      {
+        "MinPressure": 0.5,
+        "MaxPressure": 1.0,
+        "Betta": 1.24
+      },
+      {
+        "MinPressure": 1.0,
+        "MaxPressure": 5.0,
+        "Betta": 1.68
+      },
+      {
+        "MinPressure": 5.0,
+        "MaxPressure": 10.0,
+        "Betta": 1.83
+      },
+      {
+        "MinPressure": 10.0,
+        "MaxPressure": 20.0,
+        "Betta": 1.95
+      },
+      {
+        "MinPressure": 20.0,
+        "MaxPressure": 30.0,
+        "Betta": 2.00
+      },
+      {
+        "MinPressure": 30.0,
+        "MaxPressure": 40.0,
+        "Betta": 2.05
+      },
+      {
+        "MinPressure": 40.0,
+        "MaxPressure": 50.0,
+        "Betta": 2.08
+      },
+      {
+        "MinPressure": 50.0,
+        "MaxPressure": 75.0,
+        "Betta": 2.12
+      },
+      {
+        "MinPressure": 75.0,
+        "MaxPressure": 100.0,
+        "Betta": 2.15
+      }
+    ]
   }
 ]

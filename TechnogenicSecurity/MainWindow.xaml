@@ -13,9 +13,6 @@
         Height="600"
         WindowStartupLocation="CenterScreen"
         Title="Расчет пожара пролива">
-    <Window.DataContext>
-        <vm:MainViewModel/>
-    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -29,9 +26,7 @@
                     Расчет пожара пролива
                 </TabItem.Header>
                 <TabItem.Content>
-                    <uc:StraitFireCalculation DataContext="{Binding straitFireCalculationViewModel}">
-
-                    </uc:StraitFireCalculation>
+                    <uc:StraitFireCalculation/>
                 </TabItem.Content>
             </TabItem>
             <TabItem>
@@ -39,9 +34,7 @@
                     Расчет взрыва
                 </TabItem.Header>
                 <TabItem.Content>
-                    <uc:ExplosionCalculation DataContext="{Binding explosionCalculationViewModel}">
-
-                    </uc:ExplosionCalculation>
+                    <uc:ExplosionCalculation/>
                 </TabItem.Content>
             </TabItem>
             <TabItem>
@@ -49,9 +42,7 @@
                     Расчет взрыва в закрытом пространстве
                 </TabItem.Header>
                 <TabItem.Content>
-                    <uc:ClosedSpaceExplosionCalculation DataContext="{Binding closedSpaceExplosionCalculationViewModel}">
-
-                    </uc:ClosedSpaceExplosionCalculation>
+                    <uc:ClosedSpaceExplosionCalculation/>
                 </TabItem.Content>
             </TabItem>
             <TabItem>
@@ -59,9 +50,7 @@
                     Расчет тротилового эквивалента
                 </TabItem.Header>
                 <TabItem.Content>
-                    <uc:TNTEquivalentCalculation DataContext="{Binding TNTEquivalentCalculationViewModel}">
-
-                    </uc:TNTEquivalentCalculation>
+                    <uc:TNTEquivalentCalculation/>
                 </TabItem.Content>
             </TabItem>
             <TabItem>
@@ -69,9 +58,7 @@
                     Расчет энергетического потенциала
                 </TabItem.Header>
                 <TabItem.Content>
-                    <uc:EnergyPotential DataContext="{Binding energyPotentialViewModel}">
-
-                    </uc:EnergyPotential>
+                    <uc:EnergyPotential/>
                 </TabItem.Content>
             </TabItem>
             <TabItem>
@@ -79,9 +66,7 @@
                     Справочники
                 </TabItem.Header>
                 <TabItem.Content>
-                    <uc:CatalogsAdministration DataContext="{Binding catalogAdministrationViewModel}">
-
-                    </uc:CatalogsAdministration>
+                    <uc:CatalogsAdministration/>
                 </TabItem.Content>
             </TabItem>
             <TabItem>
@@ -89,9 +74,7 @@
                     План
                 </TabItem.Header>
                 <TabItem.Content>
-                    <uc:PlanEditView DataContext="{Binding planEditViewModel}">
-
-                    </uc:PlanEditView>
+                    <uc:PlanEditView/>
                 </TabItem.Content>
             </TabItem>
         </TabControl>

@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MaxWidth="900" Width="*"/>
+            <ColumnDefinition MaxWidth="1000" Width="*"/>
         </Grid.ColumnDefinitions>
         
         <ScrollViewer HorizontalScrollBarVisibility="Visible">
@@ -25,14 +25,20 @@
             </Image>
         </ScrollViewer>
         <StackPanel Grid.Row="1">
-            <WrapPanel Orientation="Horizontal" ItemWidth="300">
-                <GroupBox Header="Толщина окружности">
+            <WrapPanel Orientation="Horizontal">
+                <GroupBox Header="Толщина окружности" Width="300">
                     <StackPanel Orientation="Horizontal">
                         <Slider Maximum="15" IsSnapToTickEnabled="True" TickFrequency="1" Minimum="5" Value="{Binding PenWidth}" Width="250"/>
                         <TextBox Text="{Binding PenWidth, UpdateSourceTrigger=PropertyChanged}" Width="35"/>
                     </StackPanel>
                 </GroupBox>
-                <ComboBox ItemsSource="{Binding Colors}" SelectedItem="{Binding CurrentColor}" VerticalContentAlignment="Center">
+                <GroupBox Header="Масштаб" Width="200">
+                    <StackPanel Orientation="Horizontal">
+                        <Label>1 : </Label>
+                        <TextBox Text="{Binding Scale, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+                    </StackPanel>
+                </GroupBox>
+                <ComboBox Width="250" ItemsSource="{Binding Colors}" SelectedItem="{Binding CurrentColor}" VerticalContentAlignment="Center">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -42,11 +48,11 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <ComboBox ItemsSource="{Binding DashStyles}" SelectedItem="{Binding CurrentDashStyle}" DisplayMemberPath="Name" VerticalContentAlignment="Center"/>
+                <ComboBox Width="250" ItemsSource="{Binding DashStyles}" SelectedItem="{Binding CurrentDashStyle}" DisplayMemberPath="Name" VerticalContentAlignment="Center"/>
             </WrapPanel>
             <Button Height="50" Command="{Binding OpenDialogCommand}">Открыть план</Button>
-            <WrapPanel Orientation="Horizontal" ItemWidth="450">
-                <Button Command="{Binding UndoCircleCommand}">Отменить шаг</Button>
+            <WrapPanel Orientation="Horizontal" ItemWidth="500">
+                <Button Command="{Binding ClearImageCommand}">Очистить</Button>
                 <Button Height="50" Command="{Binding SavePlanCommand}">Сохранить</Button>
             </WrapPanel>
         </StackPanel>

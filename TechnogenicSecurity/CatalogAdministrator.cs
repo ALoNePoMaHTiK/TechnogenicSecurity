@@ -15,6 +15,8 @@ namespace TechnogenicSecurity
         const string OBJECTS_TYPES_PATH = "Catalogs\\ObjectTypes.json";
         const string STORING_METHODS_PATH = "Catalogs\\StoringFlammableSubstancesMethods.json";
         const string COEFS_PATH = "Catalogs\\AirSpeedAndTemperatureFlowCoefficient.json";
+        const string BETTAS_PATH = "Catalogs\\Betta.json";
+
 
         public static ObservableCollection<Substance> getSubstances()
         { 
@@ -66,6 +68,19 @@ namespace TechnogenicSecurity
                 dtos = JsonSerializer.Deserialize<ObservableCollection<AirSpeedAndTemperatureFlowCoefficientDTO>>(json);
             }
             catch (System.Exception e) { MessageBox.Show($"Не удалось найти справочник с коэфициентами!\n{e.Message}", "Уведомление об ошибке", MessageBoxButton.OK, MessageBoxImage.Error); App.Current.Shutdown(); }
+            return dtos;
+        }
+
+        public static ObservableCollection<BettaDTO> getBettas()
+        {
+            ObservableCollection<BettaDTO> dtos = new ObservableCollection<BettaDTO>();
+            try
+            {
+                string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string json = File.ReadAllText(Path.Combine(dir, BETTAS_PATH));
+                dtos = JsonSerializer.Deserialize<ObservableCollection<BettaDTO>>(json);
+            }
+            catch (System.Exception e) { MessageBox.Show($"Не удалось найти справочник с бетта!\n{e.Message}", "Уведомление об ошибке", MessageBoxButton.OK, MessageBoxImage.Error); App.Current.Shutdown(); }
             return dtos;
         }
 

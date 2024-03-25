@@ -1,8 +1,12 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
+﻿using DocumentFormat.OpenXml.Packaging;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
+using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using TechnogenicSecurity.Models;
 
 namespace TechnogenicSecurity.ViewModels
@@ -10,7 +14,7 @@ namespace TechnogenicSecurity.ViewModels
     public class EnergyPotentialViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string name = "")
+        private void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
@@ -18,6 +22,7 @@ namespace TechnogenicSecurity.ViewModels
         public EnergyPotentialViewModel()
         {
             Coefs = CatalogAdministrator.getAirSpeedAndTemperatureFlowCoefficients();
+            Bettas = CatalogAdministrator.getBettas();
             MolarMass = 93;
             ColumnVolume = 125.6;
             LiquidPhaseVolume = 6.9;
@@ -33,6 +38,8 @@ namespace TechnogenicSecurity.ViewModels
             IndoorAirSpeed = 0;
             IndoorTemperature = 10;
 
+            Adiabat = 1.1;
+
             Calculate();
         }
 
@@ -43,7 +50,7 @@ namespace TechnogenicSecurity.ViewModels
             newResults.GasPhaseVolume = ColumnPressure * newResults.ColumnGasPhaseVolume * EnvironmentTemperature / (AtmosphericPressure * ColumnTemperature);
             newResults.GasPhaseDensity = MolarMass / (Z * (1 + 0.00367 * (EnvironmentTemperature-273)));
             newResults.GasPhaseMass = newResults.GasPhaseVolume * newResults.GasPhaseDensity;
-            newResults.ExtensionWork = newResults.GasPhaseVolume*ColumnPressure*1.53;       //ИЗМЕНИТЬ
+            newResults.ExtensionWork = newResults.GasPhaseVolume*ColumnPressure* Betta;
             newResults.BurnoutEnergy1 = newResults.GasPhaseMass*CombustionHeat + newResults.ExtensionWork;
             newResults.LiquidPhaseMass = LiquidPhaseVolume * LiquidPhaseDensity;
             newResults.TemperatureDifference = ColumnTemperature - LiquidPhaseBoilingTemperature;
@@ -72,7 +79,91 @@ namespace TechnogenicSecurity.ViewModels
 
         private void GenerateReport()
         {
-            throw new NotImplementedException();
+            IDictionary<string, string> properties = new Dictionary<string, string>();
+            properties.Add(getVariableData(Results.LiquidPhaseMassRemainder));
+            properties.Add(getVariableData(Results.LiquidPhaseVolumeRemainder));
+
+            properties.Add(getVariableData(MolarMass));
+            properties.Add(getVariableData(ColumnVolume));
+            properties.Add(getVariableData(LiquidPhaseVolume));
+            properties.Add(getVariableData(ColumnPressure));
+            properties.Add(getVariableData(ColumnTemperature));
+            properties.Add(getVariableData(EnvironmentTemperature));
+            properties.Add(getVariableData(LiquidPhaseDensity));
+            properties.Add(getVariableData(LiquidPhaseHeatCapacity));
+            properties.Add(getVariableData(LiquidPhaseBoilingTemperature));
+            properties.Add(getVariableData(VaporizationHeat));
+            properties.Add(getVariableData(CombustionHeat));
+            properties.Add(getVariableData(IndoorAirSpeed));
+            properties.Add(getVariableData(IndoorTemperature));
+            properties.Add(getVariableData(AirSpeedAndTemperatureFlowCoefficient));
+            properties.Add(getVariableData(Adiabat));
+            properties.Add(getVariableData(Betta));
+
+            properties.Add(getVariableData(Results.ColumnGasPhaseVolume));
+            properties.Add(getVariableData(Results.GasPhaseVolume));
+            properties.Add(getVariableData(Results.GasPhaseDensity));
+            properties.Add(getVariableData(Results.GasPhaseMass));
+            properties.Add(getVariableData(Results.ExtensionWork));
+            properties.Add(getVariableData(Results.BurnoutEnergy1));
+            properties.Add(getVariableData(Results.LiquidPhaseMass));
+            properties.Add(getVariableData(Results.TemperatureDifference));
+            properties.Add(getVariableData(Results.BurnoutEnergy2));
+            properties.Add(getVariableData(Results.EvaporatedLiquidMass1));
+
+            properties.Add(getVariableData(Results.EvaporationArea));
+            properties.Add(getVariableData(Results.SaturatedSteamPressure));
+            properties.Add(getVariableData(Results.EvaporationSpeed));
+            properties.Add(getVariableData(Results.EvaporatedLiquidMass2));
+            properties.Add(getVariableData(Results.BurnoutEnergy3));
+
+            properties.Add(getVariableData(Results.ColumnEnergyPotential));
+            properties.Add(getVariableData(Results.GasSum));
+            properties.Add(getVariableData(Results.RelativeEnergyExplosivePotential));
+            properties.Add(getVariableData(Results.ExplosivenessCategory));
+
+
+
+            string dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string path = Path.Combine(dir, "ReportTemplates\\ОтчетЭнергетическийПотенциалШаблон.docx");
+
+            try
+            {
+                using (WordprocessingDocument template = WordprocessingDocument.Open(path, true))
+                {
+                    string docText = null;
+                    using (StreamReader sr = new StreamReader(template.MainDocumentPart.GetStream()))
+                    {
+                        docText = sr.ReadToEnd();
+                    }
+                    foreach (var prop in properties)
+                    {
+                        docText = docText.Replace(prop.Key, prop.Value);
+                    }
+                    string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "ОтчетЭнергетическийПотенциал.docx");
+                    using (WordprocessingDocument report = WordprocessingDocument.Create(savePath, DocumentFormat.OpenXml.WordprocessingDocumentType.Document))
+                    {
+                        foreach (var part in template.Parts)
+                            report.AddPart(part.OpenXmlPart, part.RelationshipId);
+                        using (StreamWriter sw = new StreamWriter(report.MainDocumentPart.GetStream(FileMode.Create)))
+                        {
+                            sw.Write(docText);
+                        }
+                    }
+                    MessageBox.Show($"Отчет успешно сформиирован!\nРасположение : {savePath}", "Отчет успешно сформирован", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Ошибка при формировании отчета!\n{e.Message}", "Уведомление об ошибке", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return;
+        }
+
+        private KeyValuePair<string, string> getVariableData(double variable, [CallerArgumentExpression("variable")] string name = "value")
+        {
+            return KeyValuePair.Create(name, variable.ToString("#0.#####"));
         }
 
         private void getAirSpeedAndTemperatureFlowCoefficient()
@@ -81,6 +172,26 @@ namespace TechnogenicSecurity.ViewModels
             {
                 if (coef.IndoorAirSpeed == IndoorAirSpeed && coef.IndoorTemperature == IndoorTemperature)
                     AirSpeedAndTemperatureFlowCoefficient = coef.AirSpeedAndTemperatureFlowCoefficient;
+            }
+        }
+
+        private void getBetta()
+        {
+            foreach (var adiabat in Bettas)
+            {
+                if (adiabat.Adiabat == Adiabat)
+                {
+                    foreach (var value in adiabat.Values)
+                    {
+                        if (value.MinPressure <= ColumnPressure / 1000 && ColumnPressure / 1000 <= value.MaxPressure)
+                        {
+                            Betta = value.Betta; 
+                            break;
+                        }  
+                    }
+                }
+                else
+                    continue;
             }
         }
 
@@ -113,6 +224,29 @@ namespace TechnogenicSecurity.ViewModels
         }
 
         #endregion
+
+        #region Свойства
+
+        private ObservableCollection<BettaDTO> _Bettas;
+        public ObservableCollection<BettaDTO> Bettas
+        {
+            get { return _Bettas; }
+            set { _Bettas = value; }
+        }
+
+        private double _Adiabat;
+        public double Adiabat
+        {
+            get { return _Adiabat; }
+            set { _Adiabat = value; OnPropertyChanged(); getBetta(); }
+        }
+
+        private double _Betta;
+        public double Betta
+        {
+            get { return _Betta; }
+            set { _Betta = value; OnPropertyChanged(); }
+        }
 
         private ObservableCollection<AirSpeedAndTemperatureFlowCoefficientDTO> _Coefs;
         public ObservableCollection<AirSpeedAndTemperatureFlowCoefficientDTO> Coefs
@@ -148,6 +282,7 @@ namespace TechnogenicSecurity.ViewModels
             set { _Results = value; OnPropertyChanged(); }
         }
 
+        //Молярная масса
         private double _MolarMass;
         public double MolarMass
         {
@@ -176,7 +311,7 @@ namespace TechnogenicSecurity.ViewModels
         public double ColumnPressure
         {
             get { return _ColumnPressure; }
-            set { _ColumnPressure = value; OnPropertyChanged(); }
+            set { _ColumnPressure = value; OnPropertyChanged(); getBetta(); }
         }
 
         //Температура в колонне (средняя)
@@ -234,5 +369,7 @@ namespace TechnogenicSecurity.ViewModels
             get { return _CombustionHeat; }
             set { _CombustionHeat = value; OnPropertyChanged(); }
         }
+
+        #endregion
     }
 }

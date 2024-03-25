@@ -10,7 +10,6 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Windows.Media.Imaging;
 using System.Collections.ObjectModel;
-using System.Windows.Media;
 using DashStyle = System.Drawing.Drawing2D.DashStyle;
 using Pen = System.Drawing.Pen;
 
@@ -19,7 +18,7 @@ namespace TechnogenicSecurity.ViewModels
     public class PlanEditViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string name = "")
+        private void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
@@ -27,7 +26,7 @@ namespace TechnogenicSecurity.ViewModels
         public PlanEditViewModel()
         {
             if (!Directory.Exists(".\\Plans\\"))
-                Directory.CreateDirectory("\\Plans\\");
+                Directory.CreateDirectory(".\\Plans\\");
             PlanSourcePath = "./Images/placeholder.png";
             DirectoryInfo di = new DirectoryInfo(".\\Plans\\");
             foreach (FileInfo file in di.GetFiles())
@@ -68,6 +67,13 @@ namespace TechnogenicSecurity.ViewModels
         {
             get { return _PenWidth; }
             set { _PenWidth = value; OnPropertyChanged(); }
+        }
+        
+        private int _Scale;
+        public int Scale
+        {
+            get { return _Scale; }
+            set { _Scale = value; OnPropertyChanged(); }
         }
 
         private ObservableCollection<System.Drawing.Color> _Colors;
@@ -141,6 +147,17 @@ namespace TechnogenicSecurity.ViewModels
             }
         }
 
+        public DelegateCommand ClearImageCommand
+        {
+            get
+            {
+                return new DelegateCommand((obj) =>
+                {
+                    ClearImage();
+                });
+            }
+        }
+
         public DelegateCommand SavePlanCommand
         {
             get
@@ -179,7 +196,7 @@ namespace TechnogenicSecurity.ViewModels
             PlanCircle circle = CirclesStack.Pop();
             Pen pen = new Pen(circle.Color, circle.Width);
             pen.DashStyle = CurrentDashStyle.DashStyle;
-            float diameter = 100;
+            float diameter = 100*Scale;
 
             graphics.DrawEllipse(pen, (float)(circle.Center.X - diameter / 2), (float)(circle.Center.Y - diameter / 2),
                                           diameter, diameter);
@@ -192,7 +209,7 @@ namespace TechnogenicSecurity.ViewModels
         {
             Graphics graphics = Graphics.FromImage(CurrentBitmap);
             
-            float diameter = 100;
+            float diameter = 100 * Scale;
             foreach (PlanCircle circle in CirclesStack)
             {
                 Pen pen = new Pen(circle.Color, circle.Width);
@@ -212,6 +229,12 @@ namespace TechnogenicSecurity.ViewModels
                 CurrentBitmap = SourceBitmap.Clone(new Rectangle(0, 0, SourceBitmap.Width, SourceBitmap.Height), SourceBitmap.PixelFormat);
                 DrawCircles();
             }
+        }
+
+        private void ClearImage()
+        {
+            CurrentBitmap = SourceBitmap.Clone(new Rectangle(0, 0, SourceBitmap.Width, SourceBitmap.Height), SourceBitmap.PixelFormat);
+            SavePlan();
         }
 
         private void OpenDialog()
